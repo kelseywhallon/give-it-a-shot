@@ -1,1 +1,1 @@
-# flix-and-friends
+# Mezcalcoholics
