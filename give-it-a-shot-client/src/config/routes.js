@@ -1,10 +1,9 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Home from "../pages/Home";
+import { Home } from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import { LandingPage } from "../pages/LandingPage";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const currentUser = localStorage.getItem("id");
@@ -24,7 +23,15 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const Routes = props => (
   <Switch>
-    <Route exact path="/" component={LandingPage} />
+    <Route
+      exact
+      path="/"
+      render={routeComponentProps => {
+        return (
+          <Home {...routeComponentProps} currentUser={props.currentUser} />
+        );
+      }}
+    />
     <Route path="/register" component={Register} />
     <Route
       path="/login"
@@ -39,11 +46,12 @@ const Routes = props => (
         );
       }}
     />
-    <PrivateRoute
+    {/* not needed right now, but will need later for other protected pages*/
+    /*<PrivateRoute
       path="/home"
       component={Home}
       currentUser={props.currentUser}
-    />
+    /> */}
   </Switch>
 );
 
