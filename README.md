@@ -19,9 +19,9 @@ As fledgling cocktail connoisseurs, we love trying new drinks. But, just like yo
 Our hosted version of this web app can be found at:
 
 But if you'd like to play with the code yourself, please do the following:
-1. Ensure environment variables are set
-2. Local database is set up with the models provided with this repository, and config is changed to point to your database.
-3. Dependencies are installed (npm i, both in frontend and backend directories)
+1\. Ensure environment variables are set
+2\. Local database is set up with the models provided with this repository, and config is changed to point to your database.
+3\. Dependencies are installed (npm i, both in frontend and backend directories)
 
 ## React Component Hierarchy
 
