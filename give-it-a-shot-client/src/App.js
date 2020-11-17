@@ -1,43 +1,42 @@
-import './App.css';
 import React, { useState } from 'react'
-import Home from './pages/Home'
 import Header from './components/Header'
-import Routes from './config/routes'
+import Footer from './components/Footer'
+import Routes from './config/Routes'
+import './App.css'
 import UserModel from './models/user'
 
 function App() {
-
-  // destructuring (use state returns an array of two items and allows us to set variables to the two items)
   const [currentUser, setCurrentUser] = useState(localStorage.getItem('id'))
-  
-  // set userId in local storage
+
   const storeUser = (userId) => {
-    setCurrentUser({ currentUser: userId })
     localStorage.setItem('id', userId)
+    setCurrentUser( userId )
   }
 
   const logout = (event) => {
     event.preventDefault()
+
     localStorage.removeItem('id')
+
     UserModel.logout()
       .then(res => {
         setCurrentUser(null)
-        // redirect to /login
       })
   }
 
   return (
     <div className="App">
-      <Home />
-      
-      {/* <Header currentUser={ currentUser }/>
-
+      <Header 
+        currentUser={ currentUser } 
+        logout={ logout }
+      />
       <Routes 
         currentUser={ currentUser }
         storeUser={ storeUser }
-      /> */}
+      />
+      <Footer />
     </div>
   );
 }
 
-export default App;
+export default App 

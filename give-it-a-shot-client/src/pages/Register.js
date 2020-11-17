@@ -1,89 +1,90 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import UserModel from '../models/user'
 
-class Register extends Component {
+const Register = props => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
-    state = {
-        name: '',
-        email: '',
-        password: '',
-        password2: ''
+    const handleName = e => {
+        setName(e.target.value)
+    }
+    const handleEmail = e => {
+        setEmail(e.target.value)
+    }
+    const handlePassword = e => {
+        setPassword(e.target.value)
+    }
+    const handleConfirmPassword = e => {
+        setConfirmPassword(e.target.value)
     }
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
+    const handleSubmit = e => {
+        e.preventDefault()
 
-    handleSubmit = (event) => {
-        // TODO: complete this function
-        event.preventDefault()
-
-        UserModel.create(this.state)
-            .then(data => {
-                // console.log(data)
-                // clear the form
-                this.setState({
-                    name: '',
-                    email: '',
-                    password: '',
-                    password2: ''
+        if (password === confirmPassword) {
+            UserModel.create({ name, email, password })
+                .then(data => {
+                    console.log('Successful register', data)
+                    // redirect to /login
+                    props.history.push('/login')
                 })
-                //redirect to login
-                this.props.history.push('/login')
-            })
+        }
     }
 
-    render() {
-        return (
-            <div>
-                <h4>Register</h4>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="name">Name</label>
-                        <input
-                            onChange={this.handleChange}
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={this.state.name}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="name">Email</label>
-                        <input
-                            onChange={this.handleChange}
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={this.state.email} />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="name">Password</label>
-                        <input
-                            onChange={this.handleChange}
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={this.state.password} />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="password2">Confirm Password</label>
-                        <input
-                            onChange={this.handleChange}
-                            type="password"
-                            id="password2"
-                            name="password2"
-                            value={this.state.password2} />
-                    </div>
-                    <button type="submit">Register</button>
-                </form>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <h4>Register</h4>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="name">Name</label>
+                    <input
+                        onChange={handleName}
+                        value={name}
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="name">Email</label>
+                    <input
+                        onChange={handleEmail}
+                        value={email}
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="name">Password</label>
+                    <input
+                        onChange={handlePassword}
+                        value={password}
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="confirm-password">Confirm Password</label>
+                    <input
+                        onChange={handleConfirmPassword}
+                        value={confirmPassword}
+                        type="password"
+                        id="confirm-password"
+                        name="confirm-password"
+                        required
+                    />
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    )
 }
+
 export default Register;

@@ -1,65 +1,71 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import UserModel from '../models/user'
 
-class Login extends Component {
+const Login = props => {
+    let [email, setEmail] = useState('')
+    let [password, setPassword] = useState('')
 
-    state = {
-        email: '',
-        password: '',
+    let handleEmail = e => {
+        setEmail(e.target.value)
     }
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value,
-        })
+    let handlePassword = e => {
+        setPassword(e.target.value)
     }
 
-    handleSubmit = (event) => {
+    let handleSubmit = (event) => {
         event.preventDefault()
 
-        UserModel.login(this.state)
-            .then(data => {
-                console.log(data)
-                // TODO: FIX IT
-                if (!data.user) {
-                    return false
-                }
-                this.props.storeUser(data.user)
-                // redirect the user to their profile
-                this.props.history.push('/profile')
-            })
-            .catch(err => console.log(err))
+        UserModel.login({
+            email,
+            password
+        }).then(data => {
+            if (!data.user) {
+                console.log('Login Unsuccessful')
+                return false
+            }
+            // storeUser is defined in the app component and passed to Login
+            props.storeUser(data.user)
+        })
+            .catch(err => console.log('Login Error', err))
     }
 
-    render() {
-        return (
-            <div>
-                <h4>Login</h4>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="name">Email</label>
-                        <input
-                            onChange={this.handleChange}
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={this.state.email} />
-                    </div>
+    // if user is logged in, redirect
+    if (props.currentUser) return <Redirect to='/profile' />
 
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            onChange={this.handleChange}
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={this.state.password} />
-                    </div>
-                    
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <h4>Login</h4>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="name">Email</label>
+                    <input
+                        onChange={handleEmail}
+                        value={email}
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                        onChange={handlePassword}
+                        value={password}
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                    />
+
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    )
 }
+
 export default Login;

@@ -7,9 +7,8 @@ const db = require('../models')
   to a session through req.session.passport.user
 */
 passport.serializeUser((user, done) => {
-    console.log('passport/index.js: serializeUser function is called')
-    console.log(user)
-    done(null, user.id)
+  console.log('passport/index.js: serializeUser function is called')
+  done(null, user.id)
 })
 
 /*
@@ -17,13 +16,12 @@ passport.serializeUser((user, done) => {
   passport adds the user info to req.user and we can use that to verify the authenticated user
 */
 passport.deserializeUser((id, done) => {
-    console.log('passport/index.js: deserializeUser function is called');
-
-    // look for the user by their ID, return a user object containing only their email
-    db.user.findByPk(id).then((user) => {
-        console.log(user)
-        done(null, user)
-    })
+  console.log('passport/index.js: deserializeUser function is called');
+  
+  // look for the user by their ID, return a user object containing only their email
+  db.user.findByPk(id).then(user => {
+    done(null, user)
+  })
 })
 
 passport.use(LocalStrategy)

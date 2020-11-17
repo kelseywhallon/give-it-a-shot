@@ -1,16 +1,20 @@
-//imports
-require("dotenv").config();
-const express = require("express");
+// imports
+require('dotenv').config();
+const express = require('express')
 const cors = require('cors')
 const session = require('express-session')
-//const isLoggedIn = require('./middleware/isLoggedIn');
-const passport = require('./passport')
+const morgan = require('morgan')
+
 const routes = require('./routes')
+const passport = require('./passport')
 
-const PORT = process.env.PORT || 5000;
-const app = express();
+const port = process.env.PORT || 5000
+const app = express()
 
-//middleware - JSON parsing
+// middleware - server logging
+app.use(morgan('dev'))
+
+// middleware - JSON parsing
 app.use(express.json())
 
 // middleware - cors
@@ -26,7 +30,7 @@ app.use(cors(corsOptions))
 // middleware - session config
 app.use(session({
   // session is stored in the DB
-  secret: "ILikePizza",
+  secret: "REPLACE_THIS_WITH_A_REAL_SECRET",
   resave: false, // will not resave sessions
   saveUninitialized: false, // only create a session when a property is added to the session
   cookie: {
@@ -38,20 +42,8 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-// middleware for logged in user
-app.use((req, res, next) => {
-  // before every route, attach the flash messages and current user to res.locals
-  // res.locals.alerts = req.flash();
-  res.locals.currentUser = req.user;
-  next();
-});
-
 // middleware - API routes
 app.use('/api/v1/auth', routes.auth)
 
-app.get("/", (req, res) => {
-  res.send("works!");
-});
-
-console.log("On port....", PORT);
-app.listen(PORT);
+// connection
+app.listen(port, () => console.log(`Server is running on port ${port}`))
