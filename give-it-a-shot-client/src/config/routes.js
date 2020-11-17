@@ -4,7 +4,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import Profile from "../pages/Profile";
 import { LandingPage } from "../pages/LandingPage";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -16,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         return currentUser ? (
           <Component {...rest} {...props} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/" />
         );
       }}
     />
@@ -41,8 +40,8 @@ const Routes = props => (
       }}
     />
     <PrivateRoute
-      path="/profile"
-      component={Profile}
+      path="/home"
+      component={Home}
       currentUser={props.currentUser}
     />
   </Switch>
