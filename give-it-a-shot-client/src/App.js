@@ -1,29 +1,28 @@
-import React, { useState } from 'react'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Routes from './config/Routes'
-import './App.css'
-import UserModel from './models/user'
+import React, { useState } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Routes from "./config/Routes";
+import "./App.css";
+import UserModel from "./models/user";
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(localStorage.getItem('id'))
+  const [currentUser, setCurrentUser] = useState(localStorage.getItem("id"));
 
-  const storeUser = (userId) => {
-    localStorage.setItem('id', userId)
-    setCurrentUser( userId )
-  }
+  const storeUser = userId => {
+    localStorage.setItem("id", userId);
+    setCurrentUser(userId);
+  };
 
-  const logout = (event) => {
-    event.preventDefault()
+  const logout = event => {
+    event.preventDefault();
 
-    localStorage.removeItem('id')
+    localStorage.removeItem("id");
 
-    UserModel.logout()
-      .then(res => {
-        setCurrentUser(null)
-      })
-  }
+    UserModel.logout().then(res => {
+      setCurrentUser(null);
+    });
+  };
 
   return (
     <div className="App">
@@ -36,8 +35,13 @@ function App() {
           storeUser={ storeUser }
         />
         <Footer />
+      {currentUser ? (
+        <Header currentUser={currentUser} logout={logout} />
+      ) : null}
+      <Routes currentUser={currentUser} storeUser={storeUser} />
+      <Footer />
     </div>
   );
 }
 
-export default App 
+export default App;
