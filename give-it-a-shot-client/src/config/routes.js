@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import { Home } from "../pages/Home";
+import { Quiz } from "../pages/Quiz";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 
@@ -46,12 +47,12 @@ const Routes = props => (
         );
       }}
     />
-    {/* not needed right now, but will need later for other protected pages*/
-    /*<PrivateRoute
-      path="/home"
-      component={Home}
+    {/* not needed right now, but will need later for other protected pages*/}
+    <PrivateRoute
+      path="/quiz"
+      component={Quiz}
       currentUser={props.currentUser}
-    /> */}
+    />
   </Switch>
 );
 
