@@ -5,6 +5,7 @@ import Routes from './config/Routes'
 import './App.css'
 import UserModel from './models/user'
 
+
 function App() {
   const [currentUser, setCurrentUser] = useState(localStorage.getItem('id'))
 
@@ -26,15 +27,15 @@ function App() {
 
   return (
     <div className="App">
-      <Header 
-        currentUser={ currentUser } 
-        logout={ logout }
-      />
-      <Routes 
-        currentUser={ currentUser }
-        storeUser={ storeUser }
-      />
-      <Footer />
+        <Header 
+          currentUser={ currentUser } 
+          logout={ logout }
+        />
+        <Routes 
+          currentUser={ currentUser }
+          storeUser={ storeUser }
+        />
+        <Footer />
     </div>
   );
 }
