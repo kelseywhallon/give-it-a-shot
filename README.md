@@ -19,11 +19,34 @@ As fledgling cocktail connoisseurs, we love trying new drinks. But, just like yo
 Our hosted version of this web app can be found at:
 
 But if you'd like to play with the code yourself, please do the following:
-1\. Ensure environment variables are set
-2\. Local database is set up with the models provided with this repository, and config is changed to point to your database.
-3\. Dependencies are installed (npm i, both in frontend and backend directories)
+1. Ensure environment variables are set
+2. Local database is set up with the models provided with this repository, and config is changed to point to your database.
+3. Dependencies are installed (npm i, both in frontend and backend directories)
 
 ## React Component Hierarchy
+
+-   App
+    -   Header
+    -   AccountDetails
+    -   Favorites
+    -   LandingPage
+    -   Register
+        -   RegisterForm
+    -   Login
+        -   LoginForm
+    -   Quiz
+        -   QuizForm
+    -   Recommendations
+        -   DrinkContainer
+            -   Drink
+            -   Drink
+            -   Drink
+    -   Details
+        -   DrinkDetails
+
+### Note to self
+
+Quiz flow is actually just one component, that builds up the REST call over the course of the quiz. When the user "submits" each preference, that liquor/ingredient will be save in state to the ultimate REST call and the next quiz data will be loaded.
 
 ## Entity Relationship Diagram
 
