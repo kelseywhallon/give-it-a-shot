@@ -7,7 +7,7 @@ const getDrinks = (req, res) => {
 
 const nextQuestion = (req, res) => {
   // get next question, whatever the path param is
-  const question = data.drinks.quizQuestions[req.params.id];
+  const question = data.drinks.getQuizQuestions()[req.params.id];
 
   return res.json(question);
 };
