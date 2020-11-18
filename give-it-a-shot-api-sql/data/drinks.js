@@ -29,23 +29,17 @@ const liquorOptions = [
 
 const getLiquorOptions = async () => {
   for (const liquor of liquorOptions) {
-    await db.image
-      .findOne({
-        where: {
-          name: liquor.name.toLowerCase()
-        }
-      })
-      .then(async returnedImage => {
-        console.log(returnedImage);
-        liquor.image = await Buffer.from(returnedImage.image).toString(
-          "base64"
-        );
-        console.log(liquor);
-      });
+    const returnedImage = await db.image.findOne({
+      where: {
+        name: liquor.name.toLowerCase()
+      }
+    });
+    // console.log(returnedImage);
+    liquor.image = Buffer.from(returnedImage.image).toString("base64");
   }
 
   // NEED TO HAVE API WAIT FOR DB CALL TO BE COMPLETE
-  console.log("HIIII ", liquorOptions);
+  // console.log("HIIII ", liquorOptions);
   return liquorOptions;
 };
 
@@ -55,7 +49,7 @@ const ingredientOptions = [
 ];
 
 const getQuizQuestions = async () => {
-  return await [
+  return [
     {
       id: 1,
       title: "Pick Your Poison",
