@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Routes from "./config/Routes";
 import "./App.css";
-import UserApi from "./models/user";
+import UserApi from "./backend/user";
 
 
 function App() {
@@ -26,15 +26,6 @@ function App() {
 
   return (
     <div className="App">
-        <Header 
-          currentUser={ currentUser } 
-          logout={ logout }
-        />
-        <Routes 
-          currentUser={ currentUser }
-          storeUser={ storeUser }
-        />
-        <Footer />
       {currentUser ? (
         <Header currentUser={currentUser} logout={logout} />
       ) : null}
