@@ -36,10 +36,11 @@ const getLiquorOptions = async () => {
     });
     // console.log(returnedImage);
     liquor.image = Buffer.from(returnedImage.image).toString("base64");
+    // encoding to base64 removes special characters, so we need to add them back in
+    liquor.image = liquor.image.replace("dataimage", "data:image");
+    liquor.image = liquor.image.replace("jpegbase64", "jpeg;base64,");
   }
 
-  // NEED TO HAVE API WAIT FOR DB CALL TO BE COMPLETE
-  // console.log("HIIII ", liquorOptions);
   return liquorOptions;
 };
 

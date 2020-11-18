@@ -7,8 +7,6 @@ export default function QuizForm(props) {
     props.addToResults();
   };
 
-  console.log(props);
-
   return (
     <div style={{ display: "flex", flexFlow: "column wrap" }}>
       {/* temporary inline styles to test functionality   */}

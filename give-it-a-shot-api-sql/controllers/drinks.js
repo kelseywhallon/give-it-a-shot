@@ -6,10 +6,9 @@ const getDrinks = (req, res) => {
 };
 
 const nextQuestion = async (req, res) => {
-  const container = await data.drinks.getQuizQuestions();
-  console.log("plz", container[0]);
+  const quizQuestions = await data.drinks.getQuizQuestions();
   // get next question, whatever the path param is
-  const question = container[req.params.id];
+  const question = quizQuestions[req.params.id];
 
   return res.json(question);
 };
