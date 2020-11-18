@@ -6,7 +6,7 @@ export default function QuizForm(props) {
 
     console.log(props.option);
 
-    props.addToResults(props.option);
+    props.addToResults();
   };
 
   return (
