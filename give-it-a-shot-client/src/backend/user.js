@@ -1,6 +1,6 @@
 import REACT_APP_API_URL from "../config/urls";
 
-export default class UserModel {
+export default class UserApi {
   static create(data) {
     return fetch(`${REACT_APP_API_URL}/auth/register`, {
       method: "POST",

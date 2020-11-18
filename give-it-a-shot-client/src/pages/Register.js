@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UserModel from "../models/user";
+import UserApi from "../backend/user";
 
 const Register = props => {
   const [firstName, setFirstName] = useState("");
@@ -28,7 +28,7 @@ const Register = props => {
     e.preventDefault();
 
     if (password === confirmPassword) {
-      UserModel.create({ firstName, lastName, email, password }).then(data => {
+      UserApi.create({ firstName, lastName, email, password }).then(data => {
         console.log("Successful register", data);
         // redirect to /login
         props.history.push("/login");
