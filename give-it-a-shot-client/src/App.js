@@ -3,7 +3,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Routes from "./config/Routes";
 import "./App.css";
-import UserApi from "./models/user";
+import UserApi from "./backend/user";
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(localStorage.getItem("id"));
