@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import UserModel from "../models/user";
+import UserApi from "../backend/user";
 
 const Login = props => {
   let [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ const Login = props => {
   let handleSubmit = event => {
     event.preventDefault();
 
-    UserModel.login({
+    UserApi.login({
       email,
       password
     })
