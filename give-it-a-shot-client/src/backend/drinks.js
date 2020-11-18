@@ -5,9 +5,9 @@ export default class DrinksApi {
     return fetch(`${REACT_APP_API_URL}/drinks/liquor`).then(res => res.json());
   }
 
-  static nextQuestion() {
-    return fetch(`${REACT_APP_API_URL}/drinks/question`).then(res =>
-      res.json()
-    );
+  static nextQuestion(pageNumber) {
+    return fetch(
+      `${REACT_APP_API_URL}/drinks/question/${pageNumber}`
+    ).then(res => res.json());
   }
 }

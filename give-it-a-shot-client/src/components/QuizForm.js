@@ -14,10 +14,14 @@ export default function QuizForm(props) {
       {/* temporary inline styles to test functionality   */}
       <h1>{props.question.title}</h1>
       {props.question.options.map(option => (
-        <button key={option} onClick={() => props.setSelected(option)}>
-          {option}
-        </button>
+        <div key={option.name} style={{ maxWidth: "400px" }}>
+          <img src={option.image} alt="" />
+          <button onClick={() => props.setSelected(option.name)}>
+            {option.name}
+          </button>
+        </div>
       ))}
+      <input type="text" value={props.selected} />
       <button type="submit" onClick={handleSubmit}>
         {props.question.submitText}
       </button>
