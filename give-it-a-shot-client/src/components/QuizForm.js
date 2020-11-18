@@ -4,22 +4,23 @@ export default function QuizForm(props) {
   const handleSubmit = e => {
     e.preventDefault();
 
-    console.log(props.option);
-
     props.addToResults();
   };
 
+  console.log(props);
+
   return (
-    <>
-      <h1>{props.title}</h1>
-      {props.options.map(option => (
-        <div key={option} onClick={() => props.setSelected(option)}>
+    <div style={{ display: "flex", flexFlow: "column wrap" }}>
+      {/* temporary inline styles to test functionality   */}
+      <h1>{props.question.title}</h1>
+      {props.question.options.map(option => (
+        <button key={option} onClick={() => props.setSelected(option)}>
           {option}
-        </div>
+        </button>
       ))}
       <button type="submit" onClick={handleSubmit}>
-        {props.submitText}
+        {props.question.submitText}
       </button>
-    </>
+    </div>
   );
 }

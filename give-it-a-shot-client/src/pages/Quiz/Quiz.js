@@ -1,35 +1,43 @@
 import React, { useState, useEffect } from "react";
 import QuizForm from "../../components/QuizForm";
+import DrinksApi from "../../backend/drinks";
 
 export function Quiz() {
-  /* instead of individual states, backend can send one larger object to hold entire state for that quiz. Ex:
-  {
-    title: "Pick Your Poison".
-    field: "liquor",
-    options: [
-      "vodka", "gin", "whiskey"
-    ]
-  }
-   */
+  // cool way to let user know their selection worked: update submit button with their choice, e.g. "I'm feeling _____" with ____ changing based on their selection
 
-  const [title, setTitle] = useState("Test Title");
-  const [field, setField] = useState("liquor");
-  const [options, setOptions] = useState(["vodka", "gin"]);
-  const [submitText, setSubmitText] = useState("Submit Me!");
+  const [question, setQuestion] = useState({
+    id: 1,
+    title: "",
+    field: "",
+    options: [],
+    submitText: ""
+  });
   const [selected, setSelected] = useState({});
   const [results, setResults] = useState({});
 
   const addToResults = () => {
-    results[field] = selected;
+    results[question.field] = selected;
     setResults(results);
   };
+
+  useEffect(() => {
+    console.log();
+    DrinksApi.nextQuestion().then(data => {
+      console.log(data);
+      setQuestion(data);
+    });
+  }, []);
+
+  function fetchLiquor() {
+    DrinksApi.getLiquor().then(data => {
+      console.log(data);
+    });
+  }
 
   return (
     <>
       <QuizForm
-        title={title}
-        options={options}
-        submitText={submitText}
+        question={question}
         setSelected={setSelected}
         addToResults={addToResults}
       />

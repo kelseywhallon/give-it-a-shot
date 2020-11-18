@@ -1,5 +1,5 @@
 import React from "react";
-import icon from "./alcohol_icon.png";
+import icon from "./assets/alcohol_icon.png";
 import ButtonLink from "../../components/ButtonLink";
 
 export const Home = props => {
