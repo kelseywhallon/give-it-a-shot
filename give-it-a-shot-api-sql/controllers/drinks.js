@@ -1,5 +1,12 @@
+require("dotenv").config();
 const db = require("../models");
 const data = require("../data");
+const axios = require("axios");
+
+const cdbUrl =
+  "https://www.thecocktaildb.com/api/json/v2/" +
+  process.env.API_KEY +
+  "/filter.php";
 
 const nextQuestion = async (req, res) => {
   const quizQuestions = await data.drinks.getQuizQuestions();
@@ -9,4 +16,13 @@ const nextQuestion = async (req, res) => {
   return res.json(question);
 };
 
-module.exports = { nextQuestion };
+const getRecommendations = (req, res) => {
+  console.log(req.body);
+
+  axios
+    .post(cdbUrl + "?i=" + req.body.liquor)
+    .then(response => res.json(response.data))
+    .catch(error => console.error(error));
+};
+
+module.exports = { nextQuestion, getRecommendations };
