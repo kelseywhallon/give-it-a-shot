@@ -6,7 +6,7 @@ const axios = require("axios");
 const cdbUrl =
   "https://www.thecocktaildb.com/api/json/v2/" +
   process.env.API_KEY +
-  "/filter.php";
+  "/filter.php?i=";
 
 const nextQuestion = async (req, res) => {
   const quizQuestions = await data.drinks.getQuizQuestions();
@@ -17,10 +17,16 @@ const nextQuestion = async (req, res) => {
 };
 
 const getRecommendations = (req, res) => {
-  console.log(req.body);
+  let searchUrl = cdbUrl;
+  for (const key of Object.keys(req.body)) {
+    searchUrl = searchUrl + req.body[key] + ",";
+  }
+
+  //remove trailing ','
+  searchUrl = searchUrl.substr(0, searchUrl.length - 1);
 
   axios
-    .post(cdbUrl + "?i=" + req.body.liquor)
+    .post(searchUrl)
     .then(response => res.json(response.data))
     .catch(error => console.error(error));
 };
