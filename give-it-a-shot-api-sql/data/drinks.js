@@ -24,6 +24,8 @@ const getQuizQuestions = async () => {
     // populate images from database
     for (quizPage of quizPages) {
       await populateImages(quizPage);
+
+      quizPage.numPages = quizPages.length;
     }
   }
 
