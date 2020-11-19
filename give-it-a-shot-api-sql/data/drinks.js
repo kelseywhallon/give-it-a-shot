@@ -23,7 +23,7 @@ const ingredientOptions = [
 ];
 
 const getQuizQuestions = async () => {
-  return images.quizPages;
+  return await images.load();
   // return [
   //   {
   //     id: 1,
