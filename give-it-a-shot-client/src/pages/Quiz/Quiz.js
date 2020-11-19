@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+
 import QuizForm from "../../components/QuizForm";
 import DrinksApi from "../../backend/drinks";
 
@@ -8,35 +10,49 @@ export function Quiz() {
     title: "",
     field: "",
     options: [],
-    submitText: ""
+    submitText: "",
+    numPages: 0
   });
   const [currentPage, setCurrentPage] = useState(0);
   const [selected, setSelected] = useState("");
   const [results, setResults] = useState({});
+  const [nextPage, setNextPage] = useState(false);
 
   const addToResults = () => {
     results[question.field] = selected;
     setResults(results);
-    setCurrentPage(currentPage + 1);
-    getNextQuestion();
+
+    if (currentPage + 1 >= question.numPages) {
+      console.log("yay");
+      setNextPage(true);
+    } else {
+      setCurrentPage(currentPage + 1);
+      getNextQuestion();
+    }
   };
 
   useEffect(getNextQuestion, [currentPage]);
 
   function getNextQuestion() {
     DrinksApi.nextQuestion(currentPage).then(data => {
+      console.log(data);
       setQuestion(data);
     });
   }
 
   return (
     <>
-      <QuizForm
-        question={question}
-        selected={selected}
-        setSelected={setSelected}
-        addToResults={addToResults}
-      />
+      {" "}
+      {nextPage ? (
+        <Redirect to="/results" />
+      ) : (
+        <QuizForm
+          question={question}
+          selected={selected}
+          setSelected={setSelected}
+          addToResults={addToResults}
+        />
+      )}
     </>
   );
 }
