@@ -9,8 +9,8 @@ export default function QuizForm(props) {
 
   return (
     <div style={{ display: "flex", flexFlow: "column wrap" }}>
-      {/* temporary inline styles to test functionality   */}
       <h1>{props.question.title}</h1>
+      {/* (...) is an implicit return; no need to use return keyword */}
       {props.question.options.map(option => (
         <div key={option.name} style={{ maxWidth: "400px" }}>
           <img src={option.image} alt="" />

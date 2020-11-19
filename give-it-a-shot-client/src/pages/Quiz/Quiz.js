@@ -17,7 +17,6 @@ export function Quiz() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selected, setSelected] = useState("");
   const [results, setResults] = useState({});
-  const [nextPage, setNextPage] = useState(false);
 
   const [drinks, setDrinks] = useState([]);
 
@@ -32,7 +31,6 @@ export function Quiz() {
         console.log(data);
         setDrinks(data);
       });
-      setNextPage(true);
     } else {
       setCurrentPage(currentPage + 1);
       getNextQuestion();
@@ -49,7 +47,7 @@ export function Quiz() {
 
   return (
     <>
-      {nextPage ? (
+      {drinks.length !== 0 ? (
         <Results drinks={drinks} />
       ) : (
         <QuizForm
