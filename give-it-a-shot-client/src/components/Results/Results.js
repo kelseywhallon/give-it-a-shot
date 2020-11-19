@@ -13,7 +13,7 @@ export function Results(props) {
           className="drink"
           name={drink.strDrink}
           image={drink.strDrinkThumb}
-          link={"/drink/" + drink.idDrink}
+          action={"/drink/" + drink.idDrink}
         />
       ))}
       <button onClick={props.getMoreDrinks}>Load More Drinks</button>
