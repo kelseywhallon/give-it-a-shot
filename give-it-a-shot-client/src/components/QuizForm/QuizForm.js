@@ -1,4 +1,5 @@
 import React from "react";
+import Option from "../Option";
 
 export function QuizForm(props) {
   const handleSubmit = e => {
@@ -12,12 +13,13 @@ export function QuizForm(props) {
       <h1>{props.question.title}</h1>
       {/* (...) is an implicit return; no need to use return keyword */}
       {props.question.options.map(option => (
-        <div key={option.name} style={{ maxWidth: "400px" }}>
-          <img src={option.image} alt="" />
-          <button onClick={() => props.setSelected(option.name)}>
-            {option.name}
-          </button>
-        </div>
+        <Option
+          key={option.name}
+          className=""
+          name={option.name}
+          image={option.image}
+          action={() => props.setSelected(option.name)}
+        />
       ))}
       <div type="text">{props.selected}</div>
       <button type="submit" onClick={handleSubmit}>
