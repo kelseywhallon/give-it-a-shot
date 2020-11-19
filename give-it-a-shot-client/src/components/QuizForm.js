@@ -19,7 +19,7 @@ export default function QuizForm(props) {
           </button>
         </div>
       ))}
-      <input type="text" value={props.selected} />
+      <div type="text">{props.selected}</div>
       <button type="submit" onClick={handleSubmit}>
         {props.question.submitText}
       </button>
