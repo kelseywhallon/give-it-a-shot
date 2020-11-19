@@ -3,10 +3,6 @@ const fs = require("fs");
 const currentDirectory = "images";
 const imageDirectory = __dirname + "/" + currentDirectory;
 
-/* recursive return quizPages. top level is going to end up being images, since any you go into you add as a quizPage.... unless:
- * 1) you skip the top level using an if somehow
- * 2) you set up the quizPage WITHIN the recursive call, e.g. at the top of the fucntion set up the quizPage object to be returned (in an array, concat all arrays at end)
- */
 async function loadImages(directoryPath) {
   const dirEntries = await fs.promises.readdir(directoryPath, {
     withFileTypes: true

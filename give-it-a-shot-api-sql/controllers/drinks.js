@@ -1,10 +1,6 @@
 const db = require("../models");
 const data = require("../data");
 
-// const getDrinks = (req, res) => {
-//   return res.json(data.drinks.liquorOptions);
-// };
-
 const nextQuestion = async (req, res) => {
   const quizQuestions = await data.drinks.getQuizQuestions();
   // get next question, whatever the path param is
