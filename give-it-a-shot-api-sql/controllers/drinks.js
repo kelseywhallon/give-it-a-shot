@@ -1,39 +1,14 @@
 const db = require("../models");
-
-const liquorOptions = ["vodka", "gin", "whiskey", "tequila", "rum"];
-const ingredientOptions = ["olives", "club soda"];
-
-const quizQuestions = [
-  {
-    id: 1,
-    title: "Pick Your Poison",
-    field: "liquor",
-    options: liquorOptions,
-    submitText: "Drink Up!"
-  },
-  {
-    id: 2,
-    title: "What tastes?",
-    field: "ingredient",
-    options: ingredientOptions,
-    submitText: "Get your recommendations"
-  }
-];
+const data = require("../data");
 
 const getDrinks = (req, res) => {
-  return res.json(liquorOptions);
+  return res.json(data.drinks.liquorOptions);
 };
 
-let current = 0;
-const nextQuestion = (req, res) => {
-  if (current >= quizQuestions.length) {
-    // res.json({ message: "Quiz Completed" });
-    current = 1;
-  }
-
-  // get next question, increment index
-  const question = quizQuestions[current];
-  current += 1;
+const nextQuestion = async (req, res) => {
+  const quizQuestions = await data.drinks.getQuizQuestions();
+  // get next question, whatever the path param is
+  const question = quizQuestions[req.params.id];
 
   return res.json(question);
 };
