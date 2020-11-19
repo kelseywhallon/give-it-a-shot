@@ -1,7 +1,6 @@
 const fs = require("fs");
 
 const imageDirectory = __dirname + "/images";
-const databaseImages = [];
 const quizPages = [];
 
 async function loadImages(directoryPath) {
@@ -19,12 +18,7 @@ async function loadImages(directoryPath) {
      */
     if (entry.isFile()) {
       const nameOfFile = entry.name.replace(".png", "");
-      const image = {
-        name: nameOfFile,
-        image: fs.readFileSync(directoryPath + "/" + entry.name)
-      };
       options.push({ name: nameOfFile });
-      databaseImages.push(image);
     }
     if (entry.isDirectory()) {
       const quizPage = {
@@ -44,12 +38,43 @@ async function loadImages(directoryPath) {
   return options;
 }
 
+async function getAllFiles(directoryPath) {
+  const dirEntries = await fs.promises.readdir(directoryPath, {
+    withFileTypes: true
+  });
+
+  const files = [];
+
+  for (const entry of dirEntries) {
+    if (entry.isFile()) {
+      const nameOfFile = entry.name.replace(".png", "");
+      const obj = {
+        name: nameOfFile,
+        image: fs.readFileSync(directoryPath + "/" + entry.name)
+      };
+
+      files.push(obj);
+    } else {
+      return files.concat(await getAllFiles(directoryPath + "/" + entry.name));
+    }
+  }
+
+  return files;
+}
+
+// immediately loadImages
 async function load() {
   await loadImages(imageDirectory);
-  console.log(quizPages);
-  return databaseImages;
+  return quizPages;
+}
+
+load();
+
+async function databaseLoad() {
+  return await getAllFiles(imageDirectory);
 }
 
 module.exports = {
-  load
+  quizPages,
+  databaseLoad
 };
