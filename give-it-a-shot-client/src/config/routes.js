@@ -48,7 +48,6 @@ const Routes = props => (
         );
       }}
     />
-    {/* not needed right now, but will need later for other protected pages*/}
     <PrivateRoute path="/quiz" component={Quiz} />
     <PrivateRoute path="/results" component={Results} />
   </Switch>
