@@ -32,13 +32,13 @@ export default class UserApi {
   }
 
   static show = (userId) => {
-      return fetch(`${REACT_APP_API_URL}/users/:${userId}`, {
+      return fetch(`${REACT_APP_API_URL}/users/${userId}`, {
         method: "GET",
       }).then(res => res.json());
   }
 
   static update = (userId) => {
-    return fetch(`${REACT_APP_API_URL}/users/:${userId}`, {
+    return fetch(`${REACT_APP_API_URL}/users/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
@@ -48,7 +48,7 @@ export default class UserApi {
   }
 
   static destroy = (userId) => {
-    return fetch(`${REACT_APP_API_URL}/users/:${userId}`, {
+    return fetch(`${REACT_APP_API_URL}/users/${userId}`, {
       method: "DELETE",
     }).then(res => res.json());
   }
