@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function QuizForm(props) {
+export function QuizForm(props) {
   const handleSubmit = e => {
     e.preventDefault();
 

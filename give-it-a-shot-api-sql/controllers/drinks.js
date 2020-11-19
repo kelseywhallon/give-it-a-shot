@@ -36,4 +36,4 @@ const getDrinkDetails = (req, res) => {
   res.json(null);
 };
 
-module.exports = { nextQuestion, getRecommendations };
+module.exports = { nextQuestion, getRecommendations, getDrinkDetails };

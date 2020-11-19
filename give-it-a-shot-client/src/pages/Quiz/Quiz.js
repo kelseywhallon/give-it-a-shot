@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
-import QuizForm from "../../components/QuizForm";
+import { QuizForm } from "../../components/QuizForm";
 import { Results } from "../../components/Results";
 import DrinksApi from "../../backend/drinks";
 
