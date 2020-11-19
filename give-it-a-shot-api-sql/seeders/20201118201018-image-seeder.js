@@ -19,8 +19,7 @@ module.exports = {
       restartIdentity: true
     });
 
-    const imageArray = data.images.databaseImages;
-    console.log(imageArray);
+    const imageArray = await data.images.load();
     for (const imageObject of imageArray) {
       imageObject.createdAt = new Date();
       imageObject.updatedAt = new Date();

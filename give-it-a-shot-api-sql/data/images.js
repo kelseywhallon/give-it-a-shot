@@ -2,33 +2,54 @@ const fs = require("fs");
 
 const imageDirectory = __dirname + "/images";
 const databaseImages = [];
-const liquorOptions = [];
+const quizPages = [];
 
-fs.readdir(imageDirectory, function(err, files) {
-  if (err) {
-    return console.log("Unable to scan directory: " + err);
-  }
+async function loadImages(directoryPath) {
+  const dirEntries = await fs.promises.readdir(directoryPath, {
+    withFileTypes: true
+  });
 
-  files.forEach(function(file) {
+  console.log(dirEntries);
+
+  const options = [];
+  for (const entry of dirEntries) {
     /** create image to be save to DB, using:
      * 1) name of file w/o extenstion
      * 2) binary image data
      */
-    const nameOfFile = file.replace(".png", "");
-    const image = {
-      name: nameOfFile,
-      image: fs.readFileSync(imageDirectory + "/" + file)
-    };
+    if (entry.isFile()) {
+      const nameOfFile = entry.name.replace(".png", "");
+      const image = {
+        name: nameOfFile,
+        image: fs.readFileSync(directoryPath + "/" + entry.name)
+      };
+      options.push({ name: nameOfFile });
+      databaseImages.push(image);
+    }
+    if (entry.isDirectory()) {
+      const quizPage = {
+        field: entry.name,
+        options: []
+      };
 
-    liquorOptions.push({ name: nameOfFile });
-    databaseImages.push(image);
-  });
+      quizPage.options = await loadImages(
+        imageDirectory + "/" + entry.name,
+        quizPage.options
+      );
 
-  console.log(liquorOptions);
-  console.log(databaseImages);
-});
+      quizPages.push(quizPage);
+    }
+  }
+
+  return options;
+}
+
+async function load() {
+  await loadImages(imageDirectory);
+  console.log(quizPages);
+  return databaseImages;
+}
 
 module.exports = {
-  liquorOptions,
-  databaseImages
+  load
 };
