@@ -27,7 +27,7 @@ const getRecommendations = (req, res) => {
 
   axios
     .post(searchUrl)
-    .then(response => res.json(response.data))
+    .then(response => res.json(response.data.drinks))
     .catch(error => console.error(error));
 };
 

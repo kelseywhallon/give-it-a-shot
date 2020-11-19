@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import { Home } from "../pages/Home";
 import { Quiz } from "../pages/Quiz";
-import { Results } from "../pages/Results";
+// import { Results } from "../pages/Results";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 
@@ -49,7 +49,7 @@ const Routes = props => (
       }}
     />
     <PrivateRoute path="/quiz" component={Quiz} />
-    <PrivateRoute path="/results" component={Results} />
+    {/* <PrivateRoute path="/results" component={Results} /> */}
   </Switch>
 );
 

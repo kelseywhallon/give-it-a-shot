@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
 import QuizForm from "../../components/QuizForm";
+import Results from "../../components/Results";
 import DrinksApi from "../../backend/drinks";
 
 export function Quiz() {
@@ -18,12 +19,19 @@ export function Quiz() {
   const [results, setResults] = useState({});
   const [nextPage, setNextPage] = useState(false);
 
+  const [drinks, setDrinks] = useState([]);
+
   const addToResults = () => {
     results[question.field] = selected;
     setResults(results);
 
+    // exit condition, if we reach the end of the questions, go to next page
     if (currentPage + 1 >= question.numPages) {
       console.log("yay");
+      DrinksApi.getResults(results).then(data => {
+        console.log(data);
+        setDrinks(data);
+      });
       setNextPage(true);
     } else {
       setCurrentPage(currentPage + 1);
@@ -35,16 +43,14 @@ export function Quiz() {
 
   function getNextQuestion() {
     DrinksApi.nextQuestion(currentPage).then(data => {
-      console.log(data);
       setQuestion(data);
     });
   }
 
   return (
     <>
-      {" "}
       {nextPage ? (
-        <Redirect to="/results" />
+        <Results drinks={drinks} />
       ) : (
         <QuizForm
           question={question}
