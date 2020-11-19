@@ -31,4 +31,9 @@ const getRecommendations = (req, res) => {
     .catch(error => console.error(error));
 };
 
+// TODO: get drink details function
+const getDrinkDetails = (req, res) => {
+  res.json(null);
+};
+
 module.exports = { nextQuestion, getRecommendations };
