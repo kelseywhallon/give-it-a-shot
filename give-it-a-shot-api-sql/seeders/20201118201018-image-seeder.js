@@ -1,5 +1,5 @@
 "use strict";
-const imageData = require("./images");
+const data = require("../data");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -19,12 +19,11 @@ module.exports = {
       restartIdentity: true
     });
 
-    const imageArray = imageData.base64images;
+    const imageArray = data.images.databaseImages;
     console.log(imageArray);
     for (const imageObject of imageArray) {
       imageObject.createdAt = new Date();
       imageObject.updatedAt = new Date();
-      imageObject.image = Buffer.from(imageObject.image, "base64");
     }
 
     const insertedImages = await queryInterface.bulkInsert(

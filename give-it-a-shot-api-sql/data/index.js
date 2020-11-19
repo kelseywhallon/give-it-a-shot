@@ -1,3 +1,4 @@
 module.exports = {
-  drinks: require("./drinks")
+  drinks: require("./drinks"),
+  images: require("./images")
 };

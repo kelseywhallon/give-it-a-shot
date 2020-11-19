@@ -1,47 +1,20 @@
 const db = require("../models");
-
-const liquorOptions = [
-  {
-    name: "Vodka",
-    image: ""
-  },
-  {
-    name: "Gin",
-    image: ""
-  },
-  {
-    name: "Whiskey",
-    image: ""
-  },
-  {
-    name: "Tequila",
-    image: ""
-  },
-  {
-    name: "Rum",
-    image: ""
-  },
-  {
-    name: "Brandy",
-    image: ""
-  }
-];
+const images = require("./images");
 
 const getLiquorOptions = async () => {
-  for (const liquor of liquorOptions) {
+  for (const liquor of images.liquorOptions) {
     const returnedImage = await db.image.findOne({
       where: {
-        name: liquor.name.toLowerCase()
+        name: liquor.name
       }
     });
-    // console.log(returnedImage);
     liquor.image = Buffer.from(returnedImage.image).toString("base64");
     // encoding to base64 removes special characters, so we need to add them back in
-    liquor.image = liquor.image.replace("dataimage", "data:image");
-    liquor.image = liquor.image.replace("jpegbase64", "jpeg;base64,");
+    liquor.image = "data:image/jpeg;base64," + liquor.image;
+    console.log(liquor.image);
   }
 
-  return liquorOptions;
+  return images.liquorOptions;
 };
 
 const ingredientOptions = [

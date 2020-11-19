@@ -62,4 +62,4 @@ Quiz flow is actually just one component, that builds up the REST call over the 
 
 -   Bubble up Sequelize errors, like password validation needs to be 8 characters long
 -   Implement API calls with Axios, for range of added features: wider browser support, easy to use progress bar, simultaneous requests
--   Have the backend fully drive the backend, e.g. send images via API
+-   Further expand images auto seeding + formatting for JSON response. Subdirectories within images can be named as the field they will represent in the response JSON, with all the potential options for that field as images underneath.
