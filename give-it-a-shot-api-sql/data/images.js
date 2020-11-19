@@ -13,18 +13,25 @@ async function loadImages(directoryPath) {
   });
 
   const options = [];
+  const thisDir = directoryPath.replace(/^.*[\\\/]/, "");
   const quizPage = {
-    field: directoryPath.replace(/^.*[\\\/]/, ""),
+    field: thisDir,
     options: []
   };
   for (const entry of dirEntries) {
-    /** create image to be save to DB, using:
-     * 1) name of file w/o extenstion
-     * 2) binary image data
-     */
     if (entry.isFile()) {
-      const nameOfFile = entry.name.replace(".png", "");
-      quizPage.options.push({ name: nameOfFile });
+      // if config file, add config data to quizPage
+      if (entry.name.includes("config.json")) {
+        const configData = require(directoryPath + "/config.json");
+        quizPage.position = configData.position;
+        quizPage.title = configData.title;
+        quizPage.submitText = configData.submitText;
+      }
+      // else, add image name to options array
+      else {
+        const nameOfFile = entry.name.replace(".png", "");
+        quizPage.options.push({ name: nameOfFile });
+      }
     }
     if (entry.isDirectory()) {
       const returned = await loadImages(imageDirectory + "/" + entry.name);
@@ -49,15 +56,22 @@ async function getAllFiles(directoryPath) {
   const files = [];
 
   for (const entry of dirEntries) {
-    if (entry.isFile()) {
+    // if the entry is a file and is a png, save it to database
+    if (entry.isFile() && entry.name.includes(".png")) {
+      /** create image to be save to DB, using:
+       * 1) name of file w/o extenstion
+       * 2) binary image data
+       */
       const nameOfFile = entry.name.replace(".png", "");
-      const obj = {
+      const image = {
         name: nameOfFile,
         image: fs.readFileSync(directoryPath + "/" + entry.name)
       };
 
-      files.push(obj);
-    } else {
+      files.push(image);
+    }
+    // if directory, recurse
+    if (entry.isDirectory()) {
       return files.concat(await getAllFiles(directoryPath + "/" + entry.name));
     }
   }
@@ -65,9 +79,13 @@ async function getAllFiles(directoryPath) {
   return files;
 }
 
-// immediately loadImages
 async function load() {
-  return await loadImages(imageDirectory);
+  const pageData = await loadImages(imageDirectory);
+  // sort page data by position
+  pageData.sort((p1, p2) => {
+    return p1.position < p2.position ? -1 : 1;
+  });
+  return pageData;
 }
 
 async function databaseLoad() {
