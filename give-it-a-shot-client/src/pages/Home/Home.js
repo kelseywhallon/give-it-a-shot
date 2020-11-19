@@ -3,9 +3,10 @@ import icon from "./assets/alcohol_icon.png";
 import ButtonLink from "../../components/ButtonLink";
 
 export const Home = props => {
+console.log(props)
   return props.currentUser ? (
     <div>
-      <h1>Welcome Home... Grab a Drink 🍸 </h1>
+      <h1>Welcome Home.. Grab a Drink 🍸 </h1>
       <h2>Profile of user with ID {props.currentUser}</h2>
     </div>
   ) : (

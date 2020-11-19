@@ -48,6 +48,7 @@ app.use(passport.session());
 const version = "/api/v1";
 app.use(version + "/auth", routes.auth);
 app.use(version + "/drinks", routes.drinks);
+app.use(version + "/users", routes.users);
 
 // connection
 app.listen(port, () => console.log(`Server is running on port ${port}`));

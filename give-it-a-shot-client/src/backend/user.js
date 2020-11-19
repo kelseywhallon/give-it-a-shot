@@ -30,4 +30,27 @@ export default class UserApi {
       credentials: "include"
     });
   }
+
+  static show = (userId) => {
+      return fetch(`${REACT_APP_API_URL}/users/:${userId}`, {
+        method: "GET",
+      }).then(res => res.json());
+  }
+
+  static update = (userId) => {
+    return fetch(`${REACT_APP_API_URL}/users/:${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userId)
+    }).then(res => res.json())
+  }
+
+  static destroy = (userId) => {
+    return fetch(`${REACT_APP_API_URL}/users/:${userId}`, {
+      method: "DELETE",
+    }).then(res => res.json());
+  }
+
 }
