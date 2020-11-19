@@ -1,9 +1,9 @@
 const db = require("../models");
 const data = require("../data");
 
-const getDrinks = (req, res) => {
-  return res.json(data.drinks.liquorOptions);
-};
+// const getDrinks = (req, res) => {
+//   return res.json(data.drinks.liquorOptions);
+// };
 
 const nextQuestion = async (req, res) => {
   const quizQuestions = await data.drinks.getQuizQuestions();
@@ -13,4 +13,4 @@ const nextQuestion = async (req, res) => {
   return res.json(question);
 };
 
-module.exports = { getDrinks, nextQuestion };
+module.exports = { nextQuestion };
