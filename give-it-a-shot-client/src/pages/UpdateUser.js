@@ -2,20 +2,21 @@ import React, { useState, useEffect } from 'react';
 import UserApi from '../backend/user';
 
 const UpdateUser = props => {
-    const [currentUser] = useState(props.currentUser);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
 
     useEffect(() => {
         fetchUser();
-    })
+    }, [])
 
     const fetchUser = () => {
         console.log(props.currentUser)
-        UserApi.show(currentUser).then(data => {
+        UserApi.show(props.currentUser).then(data => {
             console.log(data)
-            return data.user
+            setFirstName( data.user.firstName )
+            setLastName( data.user.lastName )
+            setEmail( data.user.email )
         })
     }
 
@@ -33,7 +34,7 @@ const UpdateUser = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        UserApi.update({ currentUser }).then(data => {
+        UserApi.update({ firstName, lastName, email }).then(data => {
             console.log("Successful update:", data);
             //redirect to home page
             props.history.push("/");
