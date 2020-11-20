@@ -15,11 +15,13 @@ export const Home = props => {
         </>
       ) : (
         <>
-          <img className="main-icon" src={icon} alt="" />
-          <div className="home-actions">
-            <ButtonLink path="/register" text="Register" />
-            <ButtonLink path="/login" text="Login" />
-          </div>
+          <img className="main-icon centered" src={icon} alt="" />
+          <ButtonLink className="home2 centered" path="/login" text="Login" />
+          <ButtonLink
+            className="home3 centered"
+            path="/register"
+            text="Register"
+          />
         </>
       )}
     </div>

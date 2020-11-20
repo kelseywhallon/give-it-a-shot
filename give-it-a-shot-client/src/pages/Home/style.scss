@@ -1,14 +1,28 @@
 .home {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 25px 1fr repeat(4, 25px);
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.centered {
+  grid-column: 2 / 3;
+  margin: 0 auto;
+  max-width: 350px;
 }
 
 .main-icon {
-  grid-row: 1 / 2;
-  width: 300px;
+  grid-row: 2 / 3;
 }
 
-.home-actions {
-  grid-row: 2 /2;
+.home2 {
+  grid-row: 4 / 5;
+}
+
+.home3 {
+  grid-row: 6 / 6;
+}
+
+button {
+  width: 150px;
 }

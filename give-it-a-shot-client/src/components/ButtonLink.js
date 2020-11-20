@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function ButtonLink(props) {
   return (
-    <button>
+    <button className={props.className}>
       <Link to={props.path}>{props.text}</Link>
     </button>
   );
