@@ -1,3 +1,5 @@
+@import "../../assets/globals";
+
 .home {
   display: grid;
   grid-template-columns: 1fr;
@@ -7,7 +9,7 @@
 
 .centered {
   grid-column: 2 / 3;
-  margin: 0 auto;
+  margin: auto auto;
   max-width: 350px;
 }
 
@@ -23,6 +25,31 @@
   grid-row: 6 / 6;
 }
 
+$button-transition: all 1s;
+
 button {
+  background: #1b4332;
+  color: $white;
   width: 150px;
+  font-size: 20px;
+  border-radius: 5px;
+  transition: $button-transition;
+  border: none;
+
+  &:hover {
+    background-color: $white;
+  }
+}
+
+a {
+  text-decoration: none;
+  transition: $button-transition;
+
+  &:visited {
+    color: $white;
+  }
+
+  &:hover {
+    color: #52b788;
+  }
 }
