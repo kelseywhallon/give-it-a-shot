@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
-import QuizForm from "../../components/QuizForm";
+import { QuizForm } from "../../components/QuizForm";
+import { Results } from "../../components/Results";
 import DrinksApi from "../../backend/drinks";
 
 export function Quiz() {
@@ -16,15 +17,47 @@ export function Quiz() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selected, setSelected] = useState("");
   const [results, setResults] = useState({});
-  const [nextPage, setNextPage] = useState(false);
+
+  // results state
+  const [drinks, setDrinks] = useState([]);
+  const [shownIndex, setShownIndex] = useState(0);
+  const [shownDrinks, setShownDrinks] = useState([]);
+
+  const getResults = () => {
+    DrinksApi.getResults(results).then(data => {
+      setDrinks(data);
+      if (data.length > 3) {
+        setShownIndex(3);
+        setShownDrinks([data[0], data[1], data[2]]);
+      }
+    });
+  };
+
+  const getMoreDrinks = () => {
+    const newDrinks = [];
+    for (let i = shownIndex; i < 3 + shownIndex; i++) {
+      if (i >= drinks.length) {
+        break;
+      }
+      newDrinks.push(drinks[i]);
+    }
+
+    if (newDrinks.length === 0) {
+      console.log("hsdhsdhsh");
+      // set another state variable with text to say no more?
+    } else {
+      setShownIndex(shownIndex + newDrinks.length);
+      setShownDrinks(newDrinks);
+    }
+  };
 
   const addToResults = () => {
     results[question.field] = selected;
     setResults(results);
 
+    // exit condition, if we reach the end of the questions, go to next page
     if (currentPage + 1 >= question.numPages) {
-      console.log("yay");
-      setNextPage(true);
+      getResults();
     } else {
       setCurrentPage(currentPage + 1);
       getNextQuestion();
@@ -35,16 +68,14 @@ export function Quiz() {
 
   function getNextQuestion() {
     DrinksApi.nextQuestion(currentPage).then(data => {
-      console.log(data);
       setQuestion(data);
     });
   }
 
   return (
     <>
-      {" "}
-      {nextPage ? (
-        <Redirect to="/results" />
+      {drinks.length !== 0 ? (
+        <Results drinks={shownDrinks} getMoreDrinks={getMoreDrinks} />
       ) : (
         <QuizForm
           question={question}

@@ -10,4 +10,14 @@ export default class DrinksApi {
       `${REACT_APP_API_URL}/drinks/question/${pageNumber}`
     ).then(res => res.json());
   }
+
+  static getResults(data) {
+    return fetch(`${REACT_APP_API_URL}/drinks/results`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then(res => res.json());
+  }
 }

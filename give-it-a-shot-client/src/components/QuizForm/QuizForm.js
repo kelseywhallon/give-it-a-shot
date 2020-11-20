@@ -1,6 +1,7 @@
 import React from "react";
+import Option from "../Option";
 
-export default function QuizForm(props) {
+export function QuizForm(props) {
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -9,17 +10,18 @@ export default function QuizForm(props) {
 
   return (
     <div style={{ display: "flex", flexFlow: "column wrap" }}>
-      {/* temporary inline styles to test functionality   */}
       <h1>{props.question.title}</h1>
+      {/* (...) is an implicit return; no need to use return keyword */}
       {props.question.options.map(option => (
-        <div key={option.name} style={{ maxWidth: "400px" }}>
-          <img src={option.image} alt="" />
-          <button onClick={() => props.setSelected(option.name)}>
-            {option.name}
-          </button>
-        </div>
+        <Option
+          key={option.name}
+          className=""
+          name={option.name}
+          image={option.image}
+          action={() => props.setSelected(option.name)}
+        />
       ))}
-      <input type="text" value={props.selected} />
+      <div type="text">{props.selected}</div>
       <button type="submit" onClick={handleSubmit}>
         {props.question.submitText}
       </button>
