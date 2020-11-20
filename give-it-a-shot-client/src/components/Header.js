@@ -7,6 +7,7 @@ const Header = props => {
     <header>
       <div className="logo">
         <Link to={"/"}>Home!</Link>
+        <Link to={"/profile"}>My Profile</Link>
       </div>
       <div className="links">
         <a href="/logout" onClick={props.logout}>
