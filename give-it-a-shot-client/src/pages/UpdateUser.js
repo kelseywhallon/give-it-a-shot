@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import UserApi from '../backend/user';
 
 const UpdateUser = props => {
@@ -11,9 +12,9 @@ const UpdateUser = props => {
     }, [])
 
     const fetchUser = () => {
-        console.log(props.currentUser)
+        // console.log(props.currentUser)
         UserApi.show(props.currentUser).then(data => {
-            console.log(data)
+            // console.log(data)
             setFirstName( data.user.firstName )
             setLastName( data.user.lastName )
             setEmail( data.user.email )
@@ -22,6 +23,7 @@ const UpdateUser = props => {
 
     const handleFirstName = e => {
         setFirstName(e.target.value);
+        console.log("inside handelfirstname: " + e)
     }
 
     const handleLastName = e => {
@@ -32,19 +34,40 @@ const UpdateUser = props => {
         setEmail(e.target.value);
     };
 
-    const handleSubmit = e => {
+    const handleUpdate = e => {
         e.preventDefault();
-        UserApi.update({ firstName, lastName, email }).then(data => {
-            console.log("Successful update:", data);
+        UserApi.update({ 
+                firstName: firstName, 
+                lastName: lastName, 
+                email: email,
+                id: props.currentUser
+            })
+            .then(data => {
+                console.log("Successful update:", data);
             //redirect to home page
             props.history.push("/");
         });
     }
 
+    const handleDelete = e => {
+        e.preventDefault();
+        UserApi.destroy({
+            firstName: firstName, 
+            lastName: lastName, 
+            email: email,
+            id: props.currentUser
+        }).then(deletedUser => {
+            console.log(`${props.currentUser} was deleted `)
+            return (
+                <Redirect to='/register'/>  
+            )
+        })
+    }
+
     return (
         <div>
-            <h4>My Info</h4>
-            <form onSubmit={handleSubmit}>
+            <h4>Account Details: </h4>
+            <form >
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
                     <input
@@ -76,7 +99,8 @@ const UpdateUser = props => {
                         name="email"
                     />
                 </div>
-                <button type="submit">Update</button>
+                <button type="submit" onClick={handleUpdate}>Update Profile</button>
+                <button type="submit" onClick={handleDelete}>Delete Account</button>
             </form>
         </div>
     );
