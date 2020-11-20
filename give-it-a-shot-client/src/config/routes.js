@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import { Home } from "../pages/Home";
 import { Quiz } from "../pages/Quiz";
-// import { Results } from "../pages/Results";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import UpdateUser from "../pages/UpdateUser";
