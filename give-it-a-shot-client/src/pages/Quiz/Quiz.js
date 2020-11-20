@@ -19,6 +19,13 @@ export function Quiz() {
   const [results, setResults] = useState({});
 
   // results state
+  /**
+   * look into changing to results page like this:
+   * props.history.push({
+ pathname: '/somePlace',
+ state: data_you_need_to_pass
+});
+   */
   const [drinks, setDrinks] = useState([]);
   const [shownIndex, setShownIndex] = useState(0);
   const [shownDrinks, setShownDrinks] = useState([]);

@@ -49,9 +49,11 @@ async function getAllFiles(directoryPath) {
     withFileTypes: true
   });
 
-  const files = [];
+  let files = [];
 
+  // console.log(dirEntries);
   for (const entry of dirEntries) {
+    // console.log(entry);
     // if the entry is a file and is a png, save it to database
     if (entry.isFile() && entry.name.includes(".png")) {
       /** create image to be save to DB, using:
@@ -68,10 +70,9 @@ async function getAllFiles(directoryPath) {
     }
     // if directory, recurse
     if (entry.isDirectory()) {
-      return files.concat(await getAllFiles(directoryPath + "/" + entry.name));
+      files = files.concat(await getAllFiles(directoryPath + "/" + entry.name));
     }
   }
-
   return files;
 }
 
