@@ -8,6 +8,7 @@ console.log(props)
     <div>
       <h1>Welcome Home.. Grab a Drink 🍸 </h1>
       <h2>Profile of user with ID {props.currentUser}</h2>
+      <ButtonLink path="/quiz" text="Take the drink quiz" />
     </div>
   ) : (
     <>

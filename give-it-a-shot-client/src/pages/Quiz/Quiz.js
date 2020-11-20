@@ -1,46 +1,58 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+
 import QuizForm from "../../components/QuizForm";
 import DrinksApi from "../../backend/drinks";
 
 export function Quiz() {
-  // cool way to let user know their selection worked: update submit button with their choice, e.g. "I'm feeling _____" with ____ changing based on their selection
-
   const [question, setQuestion] = useState({
     id: 1,
     title: "",
     field: "",
     options: [],
-    submitText: ""
+    submitText: "",
+    numPages: 0
   });
-  const [selected, setSelected] = useState({});
+  const [currentPage, setCurrentPage] = useState(0);
+  const [selected, setSelected] = useState("");
   const [results, setResults] = useState({});
+  const [nextPage, setNextPage] = useState(false);
 
   const addToResults = () => {
     results[question.field] = selected;
     setResults(results);
+
+    if (currentPage + 1 >= question.numPages) {
+      console.log("yay");
+      setNextPage(true);
+    } else {
+      setCurrentPage(currentPage + 1);
+      getNextQuestion();
+    }
   };
 
-  useEffect(() => {
-    console.log();
-    DrinksApi.nextQuestion().then(data => {
+  useEffect(getNextQuestion, [currentPage]);
+
+  function getNextQuestion() {
+    DrinksApi.nextQuestion(currentPage).then(data => {
       console.log(data);
       setQuestion(data);
-    });
-  }, []);
-
-  function fetchLiquor() {
-    DrinksApi.getLiquor().then(data => {
-      console.log(data);
     });
   }
 
   return (
     <>
-      <QuizForm
-        question={question}
-        setSelected={setSelected}
-        addToResults={addToResults}
-      />
+      {" "}
+      {nextPage ? (
+        <Redirect to="/results" />
+      ) : (
+        <QuizForm
+          question={question}
+          selected={selected}
+          setSelected={setSelected}
+          addToResults={addToResults}
+        />
+      )}
     </>
   );
 }
