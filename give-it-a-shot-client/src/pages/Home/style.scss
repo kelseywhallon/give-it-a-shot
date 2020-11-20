@@ -1,0 +1,14 @@
+.home {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50% 50%;
+}
+
+.main-icon {
+  grid-row: 1 / 2;
+  width: 300px;
+}
+
+.home-actions {
+  grid-row: 2 /2;
+}
