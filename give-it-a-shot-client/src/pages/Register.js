@@ -39,26 +39,26 @@ const Register = props => {
 
   const fields = [
     {
-      name: "firstName",
+      name: "First Name",
       value: firstName,
       type: "text",
       onChange: handleFirstName
     },
     {
-      name: "lastName",
+      name: "Last Name",
       value: lastName,
       type: "text",
       onChange: handleLastName
     },
-    { name: "email", value: email, type: "email", onChange: handleEmail },
+    { name: "Email", value: email, type: "email", onChange: handleEmail },
     {
-      name: "password",
+      name: "Password",
       value: password,
       type: "password",
       onChange: handlePassword
     },
     {
-      name: "confirmPassword",
+      name: "Confirm Password",
       value: confirmPassword,
       type: "password",
       onChange: handleConfirmPassword

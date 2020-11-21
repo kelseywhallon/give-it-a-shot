@@ -1,12 +1,12 @@
 import React from "react";
 import icon from "./assets/alcohol_icon.png";
 import { ButtonLink } from "../../components/ButtonLink";
-import "./style.scss";
+import styles from "./assets/Home.module.scss";
 
 export const Home = props => {
   console.log(props);
   return (
-    <div className="home">
+    <div className={styles.home}>
       {props.currentUser ? (
         <>
           <h1>Welcome Home.. Grab a Drink 🍸 </h1>
@@ -15,10 +15,18 @@ export const Home = props => {
         </>
       ) : (
         <>
-          <img className="main-icon centered" src={icon} alt="" />
-          <ButtonLink className="home2 centered" path="/login" text="Login" />
+          <img
+            className={`${styles.mainIcon} ${styles.centered}`}
+            src={icon}
+            alt=""
+          />
           <ButtonLink
-            className="home3 centered"
+            className={`${styles.home2} ${styles.centered}`}
+            path="/login"
+            text="Login"
+          />
+          <ButtonLink
+            className={`${styles.home3} ${styles.centered}`}
             path="/register"
             text="Register"
           />

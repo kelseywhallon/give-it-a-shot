@@ -37,9 +37,9 @@ const Login = props => {
   if (props.currentUser) return <Redirect to="/" />;
 
   const fields = [
-    { name: "email", value: email, type: "email", onChange: handleEmail },
+    { name: "Email", value: email, type: "email", onChange: handleEmail },
     {
-      name: "password",
+      name: "Password",
       value: password,
       type: "password",
       onChange: handlePassword
