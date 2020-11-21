@@ -13,7 +13,6 @@ export function QuizForm(props) {
   return (
     <>
       <h1>{props.question.title}</h1>
-
       <div className={`${styles.options} ${styles.container}`}>
         {/* (...) is an implicit return; no need to use return keyword */}
         {props.question.options.map(option => (

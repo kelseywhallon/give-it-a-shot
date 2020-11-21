@@ -3,9 +3,11 @@ import "./style.scss";
 import { Option } from "../Option";
 
 export function Results(props) {
+  const options = props;
   return (
     <div>
       <h1>Your Recommendations</h1>
+
       {/* (...) is an implicit return; no need to use return keyword */}
       {props.drinks.map(drink => (
         <Option
