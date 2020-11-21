@@ -4,7 +4,7 @@ import "./Header.scss";
 
 export const Header = props => {
   const loggedIn = (
-    <>
+    <div class="header">
       <div className="logo">
         <Link to={"/"}>Home</Link>
         <Link to={"/profile"}>My Profile</Link>
@@ -15,7 +15,7 @@ export const Header = props => {
           Log Out
         </a>
       </div>
-    </>
+    </div>
   );
 
   const loggedOut = (

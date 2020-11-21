@@ -39,7 +39,21 @@ header {
 
 .logo,
 .links {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 25px;
+}
+
+.links {
+  margin-left: auto;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+
+  h1 {
+    display: inline-block;
+  }
 }
