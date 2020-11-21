@@ -1,9 +1,11 @@
 @import "../../assets/globals";
 
+$text-color: #40916c;
+
 header {
   background-color: rgba(239, 250, 241, 0.55);
   // border: 1px solid white;
-  color: #40916c;
+  color: $text-color;
   text-align: center;
   padding: 20px 10px;
   display: flex;
@@ -15,11 +17,11 @@ header {
   }
 
   a {
-    color: #fff;
+    color: $text-color;
     transition: color 0.3s ease;
 
     &:hover {
-      color: darken(#fff, 20%);
+      color: lighten($text-color, 35%);
     }
   }
 
@@ -33,4 +35,11 @@ header {
       padding: 0px 10px;
     }
   }
+}
+
+.logo,
+.links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }

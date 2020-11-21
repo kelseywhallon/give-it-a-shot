@@ -9,9 +9,17 @@ export const Home = props => {
     <div className={styles.home}>
       {props.currentUser ? (
         <>
-          <h1>Welcome Home.. Grab a Drink 🍸 </h1>
-          <h2>Profile of user with ID {props.currentUser}</h2>
-          <ButtonLink path="/quiz" text="Take the drink quiz" />
+          <h1 className={`${styles.mainIcon} ${styles.centered}`}>
+            Welcome Home.. Grab a Drink 🍸{" "}
+          </h1>
+          <h2 className={`${styles.home2} ${styles.centered}`}>
+            Profile of user with ID {props.currentUser}
+          </h2>
+          <ButtonLink
+            className={`${styles.home3} ${styles.centered}`}
+            path="/quiz"
+            text="Take the drink quiz"
+          />
         </>
       ) : (
         <>
