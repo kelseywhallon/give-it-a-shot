@@ -36,30 +36,25 @@ But if you'd like to play with the code yourself, please do the following:
 
 -   App
     -   Header
-    -   AccountDetails
-    -   Favorites
-    -   LandingPage
-    -   Register
-        -   RegisterForm
-    -   Login
-        -   LoginForm
-    -   Quiz
-        -   QuizForm
-    -   Recommendations
-        -   DrinkContainer
-            -   Drink
-            -   Drink
-            -   Drink
-    -   Details
-        -   DrinkDetails
-
-### Note to self
-
-Quiz flow is actually just one component, that builds up the REST call over the course of the quiz. When the user "submits" each preference, that liquor/ingredient will be save in state to the ultimate REST call and the next quiz data will be loaded.
+    -   Routes
+        -   AccountDetails
+        -   Favorites
+        -   Register
+        -   Login
+        -   Quiz
+            -   QuizForm
+                -   Option
+            -   Results
+                -   Option
+        -   Details
+            -   DrinkDetails
+        -   UpdateUser
+        -   Favorites
+    -   Footer
 
 ## Entity Relationship Diagram
 
-![Entity Relationship Diagram](images/ERD.jpeg)
+![Entity Relationship Diagram](images/ERDv2.jpeg)
 
 ## Wireframes
 
@@ -71,3 +66,5 @@ Quiz flow is actually just one component, that builds up the REST call over the 
 
 -   Bubble up Sequelize errors, like password validation needs to be 8 characters long
 -   Implement API calls with Axios, for range of added features: wider browser support, easy to use progress bar, simultaneous requests
+-   Only suggest the ingredients that pair with the appropriate liquor, instead of all ingredients
+-   Create an Account navigation link, with a drop down for "Account Details" and "Favorites"

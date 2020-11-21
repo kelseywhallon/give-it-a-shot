@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { Form } from "../components/Form";
 import UserApi from "../backend/user";
 
 const Login = props => {
@@ -35,36 +36,23 @@ const Login = props => {
   // if user is logged in, redirect
   if (props.currentUser) return <Redirect to="/" />;
 
-  return (
-    <div>
-      <h4>Login</h4>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Email</label>
-          <input
-            onChange={handleEmail}
-            value={email}
-            type="email"
-            id="email"
-            name="email"
-            required
-          />
-        </div>
+  const fields = [
+    { name: "email", value: email, type: "email", onChange: handleEmail },
+    {
+      name: "password",
+      value: password,
+      type: "password",
+      onChange: handlePassword
+    }
+  ];
 
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            onChange={handlePassword}
-            value={password}
-            type="password"
-            id="password"
-            name="password"
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+  return (
+    <Form
+      title="Login"
+      submitText="Login"
+      onSubmit={handleSubmit}
+      fields={fields}
+    />
   );
 };
 
