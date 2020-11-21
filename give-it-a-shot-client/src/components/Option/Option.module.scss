@@ -1,0 +1,16 @@
+.option {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  outline-color: #1b4332;
+  cursor: pointer;
+  margin: 0 auto;
+  font-size: 18px;
+
+  &:hover,
+  &:focus {
+    outline: 2px solid #1b4332;
+  }
+}
