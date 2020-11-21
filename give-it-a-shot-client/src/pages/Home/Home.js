@@ -1,6 +1,6 @@
 import React from "react";
 import icon from "./assets/alcohol_icon.png";
-import { ButtonLink } from "../../components/ButtonLink";
+import { ButtonLink } from "../../components/Button";
 import styles from "./assets/Home.module.scss";
 
 export const Home = props => {

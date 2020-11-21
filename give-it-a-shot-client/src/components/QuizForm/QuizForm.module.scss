@@ -1,0 +1,18 @@
+.container {
+  margin: 0 auto;
+  width: 85%;
+}
+
+.options {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.option {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}

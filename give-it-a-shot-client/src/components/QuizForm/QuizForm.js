@@ -1,5 +1,7 @@
 import React from "react";
 import Option from "../Option";
+import { Button } from "../Button";
+import styles from "./QuizForm.module.scss";
 
 export function QuizForm(props) {
   const handleSubmit = e => {
@@ -9,22 +11,27 @@ export function QuizForm(props) {
   };
 
   return (
-    <div style={{ display: "flex", flexFlow: "column wrap" }}>
+    <>
       <h1>{props.question.title}</h1>
-      {/* (...) is an implicit return; no need to use return keyword */}
-      {props.question.options.map(option => (
-        <Option
-          key={option.name}
-          className=""
-          name={option.name}
-          image={option.image}
-          action={() => props.setSelected(option.name)}
-        />
-      ))}
+
+      <div className={`${styles.options} ${styles.container}`}>
+        {/* (...) is an implicit return; no need to use return keyword */}
+        {props.question.options.map(option => (
+          <Option
+            key={option.name}
+            className={styles.option}
+            name={option.name}
+            image={option.image}
+            action={() => props.setSelected(option.name)}
+          />
+        ))}
+      </div>
       <div type="text">{props.selected}</div>
-      <button type="submit" onClick={handleSubmit}>
-        {props.question.submitText}
-      </button>
-    </div>
+      <Button
+        type="submit"
+        onClick={handleSubmit}
+        content={props.question.submitText}
+      />
+    </>
   );
 }
