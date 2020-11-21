@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import UserApi from '../backend/user';
+import ButtonLink from "../components/ButtonLink";
+import { Redirect } from 'react-router-dom';
+import Routes from '../config/Routes';
 
-const UpdateUser = props => {
+const UserProfile = props => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -57,12 +59,12 @@ const UpdateUser = props => {
             email: email,
             id: props.currentUser
         }).then(deletedUser => {
-            console.log(`${props.currentUser} was deleted `)
-            return (
-                <Redirect to='/register'/>  
-            )
+            console.log(`${firstName} was deleted `)
+            console.log(props.currentUser)
+            localStorage.clear();
         })
     }
+
 
     return (
         <div>
@@ -100,10 +102,10 @@ const UpdateUser = props => {
                     />
                 </div>
                 <button type="submit" onClick={handleUpdate}>Update Profile</button>
-                <button type="submit" onClick={handleDelete}>Delete Account</button>
+                <button type="submit" onClick={handleDelete}>Delete Profile</button>
             </form>
         </div>
     );
 };
 
-export default UpdateUser;
+export default UserProfile;
