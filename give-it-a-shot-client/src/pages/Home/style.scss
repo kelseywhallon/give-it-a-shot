@@ -1,0 +1,26 @@
+@import "../../assets/globals";
+
+.home {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 25px 1fr repeat(4, 25px);
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.centered {
+  grid-column: 2 / 3;
+  margin: auto auto;
+  max-width: 350px;
+}
+
+.main-icon {
+  grid-row: 2 / 3;
+}
+
+.home2 {
+  grid-row: 4 / 5;
+}
+
+.home3 {
+  grid-row: 6 / 6;
+}

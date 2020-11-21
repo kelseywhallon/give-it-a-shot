@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import UserApi from "../backend/user";
+import { Form } from "../components/Form";
 
 const Register = props => {
   const [firstName, setFirstName] = useState("");
@@ -36,68 +37,41 @@ const Register = props => {
     }
   };
 
+  const fields = [
+    {
+      name: "firstName",
+      value: firstName,
+      type: "text",
+      onChange: handleFirstName
+    },
+    {
+      name: "lastName",
+      value: lastName,
+      type: "text",
+      onChange: handleLastName
+    },
+    { name: "email", value: email, type: "email", onChange: handleEmail },
+    {
+      name: "password",
+      value: password,
+      type: "password",
+      onChange: handlePassword
+    },
+    {
+      name: "confirmPassword",
+      value: confirmPassword,
+      type: "password",
+      onChange: handleConfirmPassword
+    }
+  ];
+
   return (
-    <div>
-      <h4>Register</h4>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="firstName">First Name</label>
-          <input
-            onChange={handleFirstName}
-            value={firstName}
-            type="text"
-            id="firstName"
-            name="firstName"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            onChange={handleLastName}
-            value={lastName}
-            type="text"
-            id="lastName"
-            name="lastName"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            onChange={handleEmail}
-            value={email}
-            type="email"
-            id="email"
-            name="email"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            onChange={handlePassword}
-            value={password}
-            type="password"
-            id="password"
-            name="password"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            onChange={handleConfirmPassword}
-            value={confirmPassword}
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            required
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
-    </div>
+    <Form
+      title="Register"
+      submitText="Register"
+      onSubmit={handleSubmit}
+      fields={fields}
+    />
   );
 };
 

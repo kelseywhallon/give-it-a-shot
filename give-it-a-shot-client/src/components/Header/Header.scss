@@ -1,0 +1,36 @@
+@import "../../assets/globals";
+
+header {
+  background-color: rgba(239, 250, 241, 0.55);
+  // border: 1px solid white;
+  color: #40916c;
+  text-align: center;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  font: 20px "NunitoBoldItalic", sans-serif;
+
+  h1 {
+    margin: 0 auto;
+  }
+
+  a {
+    color: #fff;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: darken(#fff, 20%);
+    }
+  }
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      padding: 0px 10px;
+    }
+  }
+}
