@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.scss";
-import Option from "../Option";
+import { Option } from "../Option";
 
 export function Results(props) {
   return (

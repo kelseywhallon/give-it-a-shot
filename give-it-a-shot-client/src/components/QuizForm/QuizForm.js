@@ -1,5 +1,5 @@
 import React from "react";
-import Option from "../Option";
+import { Option } from "../Option";
 import { Button } from "../Button";
 import styles from "./QuizForm.module.scss";
 
@@ -26,7 +26,6 @@ export function QuizForm(props) {
           />
         ))}
       </div>
-      <div type="text">{props.selected}</div>
       <Button
         type="submit"
         onClick={handleSubmit}
