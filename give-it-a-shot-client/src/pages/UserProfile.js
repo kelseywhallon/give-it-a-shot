@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import UserApi from '../backend/user';
-import ButtonLink from "../components/ButtonLink";
 import { Redirect } from 'react-router-dom';
-import Routes from '../config/Routes';
+import UserApi from '../backend/user';
 
 const UserProfile = props => {
+    const [user, setUser] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -17,9 +16,9 @@ const UserProfile = props => {
         // console.log(props.currentUser)
         UserApi.show(props.currentUser).then(data => {
             // console.log(data)
-            setFirstName( data.user.firstName )
-            setLastName( data.user.lastName )
-            setEmail( data.user.email )
+            setFirstName(data.user.firstName)
+            setLastName(data.user.lastName)
+            setEmail(data.user.email)
         })
     }
 
@@ -38,38 +37,45 @@ const UserProfile = props => {
 
     const handleUpdate = e => {
         e.preventDefault();
-        UserApi.update({ 
-                firstName: firstName, 
-                lastName: lastName, 
-                email: email,
-                id: props.currentUser
-            })
+        UserApi.update({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            id: props.currentUser
+        })
             .then(data => {
                 console.log("Successful update:", data);
-            //redirect to home page
-            props.history.push("/");
-        });
+                //redirect to home page
+                props.history.push("/");
+            });
     }
 
     const handleDelete = e => {
         e.preventDefault();
         UserApi.destroy({
-            firstName: firstName, 
-            lastName: lastName, 
+            firstName: firstName,
+            lastName: lastName,
             email: email,
             id: props.currentUser
         }).then(deletedUser => {
             console.log(`${firstName} was deleted `)
             console.log(props.currentUser)
-            localStorage.clear();
+            if(!props.currentUser) return <Redirect to='/register' />
         })
+        
     }
 
+    const logout = () => {
+        localStorage.removeItem("id");
+        UserApi.logout().then(res => {
+            setUser(null);
+        });
+    };
 
     return (
         <div>
             <h4>Account Details: </h4>
-            <form >
+            <form>
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
                     <input
@@ -101,8 +107,8 @@ const UserProfile = props => {
                         name="email"
                     />
                 </div>
-                <button type="submit" onClick={handleUpdate}>Update Profile</button>
-                <button type="submit" onClick={handleDelete}>Delete Profile</button>
+                <button type="submit" onClick={handleUpdate}> Update Profile </button>
+                <button type="submit" onClick={handleDelete, logout}>Delete Account</button>
             </form>
         </div>
     );
