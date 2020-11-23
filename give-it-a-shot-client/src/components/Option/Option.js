@@ -1,16 +1,17 @@
 import React from "react";
+import styles from "./Option.module.scss";
 
-export default function Option(props) {
+export function Option(props) {
   return typeof props.action === "string" ? (
     <OptionLink
-      className={props.className}
+      className={`${props.className} ${styles.option}`}
       name={props.name}
       image={props.image}
       link={props.action}
     />
   ) : (
     <OptionButton
-      className={props.className}
+      className={`${props.className} ${styles.option}`}
       name={props.name}
       image={props.image}
       onClick={props.action}

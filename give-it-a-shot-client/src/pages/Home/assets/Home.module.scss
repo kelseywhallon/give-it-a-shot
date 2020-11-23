@@ -1,9 +1,9 @@
-@import "../../assets/globals";
+@import "../../../assets/globals";
 
 .home {
+  height: 100%;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 25px 1fr repeat(4, 25px);
+  grid-template-rows: 25px 60% repeat(4, 25px);
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -13,7 +13,7 @@
   max-width: 350px;
 }
 
-.main-icon {
+.mainIcon {
   grid-row: 2 / 3;
 }
 
