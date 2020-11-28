@@ -49,7 +49,6 @@ const Routes = props => (
         );
       }}
     />
-
     <PrivateRoute
       path="/profile"
       component={ UserProfile }
