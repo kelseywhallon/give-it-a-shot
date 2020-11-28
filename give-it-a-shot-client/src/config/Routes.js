@@ -5,7 +5,7 @@ import { Home } from "../pages/Home";
 import { Quiz } from "../pages/Quiz";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import UpdateUser from "../pages/UpdateUser";
+import UserProfile from "../pages/UserProfile";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const currentUser = localStorage.getItem("id");
@@ -51,7 +51,7 @@ const Routes = props => (
     />
     <PrivateRoute
       path="/profile"
-      component={UpdateUser}
+      component={ UserProfile }
       currentUser={props.currentUser}
     />
     <PrivateRoute path="/quiz" component={Quiz} />

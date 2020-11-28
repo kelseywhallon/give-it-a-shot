@@ -22,8 +22,8 @@ export function Quiz() {
   /**
    * look into changing to results page like this:
    * props.history.push({
- pathname: '/somePlace',
- state: data_you_need_to_pass
+  pathname: '/somePlace',
+  state: data_you_need_to_pass
 });
    */
   const [drinks, setDrinks] = useState([]);
@@ -84,13 +84,13 @@ export function Quiz() {
       {drinks.length !== 0 ? (
         <Results drinks={shownDrinks} getMoreDrinks={getMoreDrinks} />
       ) : (
-        <QuizForm
-          question={question}
-          selected={selected}
-          setSelected={setSelected}
-          addToResults={addToResults}
-        />
-      )}
+          <QuizForm
+            question={question}
+            selected={selected}
+            setSelected={setSelected}
+            addToResults={addToResults}
+          />
+        )}
     </>
   );
 }
