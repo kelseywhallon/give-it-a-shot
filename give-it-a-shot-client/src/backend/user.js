@@ -37,18 +37,18 @@ export default class UserApi {
       }).then(res => res.json());
   }
 
-  static update = (userId) => {
-    return fetch(`${REACT_APP_API_URL}/users/${userId}`, {
+  static update = (user) => {
+    return fetch(`${REACT_APP_API_URL}/users/${user.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(userId)
+      body: JSON.stringify(user)
     }).then(res => res.json())
   }
 
-  static destroy = (userId) => {
-    return fetch(`${REACT_APP_API_URL}/users/${userId}`, {
+  static destroy = (user) => {
+    return fetch(`${REACT_APP_API_URL}/users/${user.id}`, {
       method: "DELETE",
     }).then(res => res.json());
   }

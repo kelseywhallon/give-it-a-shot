@@ -11,8 +11,6 @@ const show = (req, res) => {
 }
 
 const update = (req, res) => {
-    // make the update route
-    // console.log(req.body)
     db.user.update(
         {
             email: req.body.email,

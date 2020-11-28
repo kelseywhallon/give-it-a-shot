@@ -8,6 +8,12 @@ const cdbUrl =
   process.env.API_KEY +
   "/filter.php?i=";
 
+  const cdbDetails =   
+  "https://www.thecocktaildb.com/api/json/v2/" +
+  process.env.API_KEY +
+  "/lookup.php?i=";
+
+
 const nextQuestion = async (req, res) => {
   const quizQuestions = await data.drinks.getQuizQuestions();
   // get next question, whatever the path param is
@@ -33,7 +39,24 @@ const getRecommendations = (req, res) => {
 
 // TODO: get drink details function
 const getDrinkDetails = (req, res) => {
-  res.json(null);
+
+  cdbDetails = cdbDetails + idDrink;
+
+  axios 
+    .get(cdbDetails)
+    .then(response => res.json(response.data.drinks))
+    .catch(error => console.error(error));
 };
+
+// const getRandomDrink = (req, res) => {
+//     const randomDrink = 
+//   "https://www.thecocktaildb.com/api/json/v2/" +
+//   process.env.API_KEY +
+//   "/random.php";
+
+//   axios
+//   .post(randomdrink)
+//   .then(res => res.json(res.data.drinks))
+// }
 
 module.exports = { nextQuestion, getRecommendations, getDrinkDetails };
