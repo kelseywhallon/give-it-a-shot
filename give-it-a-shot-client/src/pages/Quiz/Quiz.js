@@ -5,7 +5,15 @@ import { QuizForm } from "../../components/QuizForm";
 import { Results } from "../../components/Results";
 import DrinksApi from "../../backend/drinks";
 
-export function Quiz() {
+export function Quiz(props) {
+  //TODO: implement going back
+  const backListener = props.history.listen((location, action) => {
+    if (action === "POP") {
+      console.log("hiiiii");
+      // props.history.goBack();
+    }
+  });
+
   const [question, setQuestion] = useState({
     id: 1,
     title: "",
@@ -33,34 +41,46 @@ export function Quiz() {
   const getResults = () => {
     DrinksApi.getResults(results).then(data => {
       setDrinks(data);
-      if (data.length > 3) {
-        setShownIndex(3);
-        setShownDrinks([data[0], data[1], data[2]]);
+      if (data.length > 2) {
+        setShownIndex(2);
+        setShownDrinks([data[0], data[1]]);
       }
     });
   };
 
   const getMoreDrinks = () => {
-    const newDrinks = [];
-    for (let i = shownIndex; i < 3 + shownIndex; i++) {
+    for (let i = shownIndex; i < 2 + shownIndex; i++) {
       if (i >= drinks.length) {
         break;
       }
-      newDrinks.push(drinks[i]);
+      shownDrinks.push(drinks[i]);
     }
 
-    if (newDrinks.length === 0) {
+    if (shownDrinks.length >= drinks.length) {
       console.log("hsdhsdhsh");
       // set another state variable with text to say no more?
     } else {
-      setShownIndex(shownIndex + newDrinks.length);
-      setShownDrinks(newDrinks);
+      setShownIndex(shownDrinks.length);
+      setShownDrinks(shownDrinks);
     }
   };
 
   const addToResults = () => {
     results[question.field] = selected;
     setResults(results);
+
+    props.history.push({
+      pathname: "/quiz",
+      state: {
+        question: question,
+        currentPage: currentPage,
+        selected: selected,
+        results: results,
+        drinks: drinks,
+        shownIndex: shownIndex,
+        shownDrinks: shownDrinks
+      }
+    });
 
     // exit condition, if we reach the end of the questions, go to next page
     if (currentPage + 1 >= question.numPages) {
@@ -71,7 +91,14 @@ export function Quiz() {
     }
   };
 
-  useEffect(getNextQuestion, [currentPage]);
+  useEffect(() => {
+    getNextQuestion();
+
+    return function() {
+      console.log("yooo");
+      backListener();
+    };
+  }, [currentPage]);
 
   function getNextQuestion() {
     DrinksApi.nextQuestion(currentPage).then(data => {
@@ -84,13 +111,13 @@ export function Quiz() {
       {drinks.length !== 0 ? (
         <Results drinks={shownDrinks} getMoreDrinks={getMoreDrinks} />
       ) : (
-          <QuizForm
-            question={question}
-            selected={selected}
-            setSelected={setSelected}
-            addToResults={addToResults}
-          />
-        )}
+        <QuizForm
+          question={question}
+          selected={selected}
+          setSelected={setSelected}
+          addToResults={addToResults}
+        />
+      )}
     </>
   );
 }

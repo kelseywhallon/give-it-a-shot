@@ -9,7 +9,6 @@ import UserProfile from "../pages/UserProfile";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const currentUser = localStorage.getItem("id");
-  console.log(currentUser);
   return (
     <Route
       {...rest}
@@ -51,7 +50,7 @@ const Routes = props => (
     />
     <PrivateRoute
       path="/profile"
-      component={ UserProfile }
+      component={UserProfile}
       currentUser={props.currentUser}
     />
     <PrivateRoute path="/quiz" component={Quiz} />
