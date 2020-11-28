@@ -53,7 +53,11 @@ const Routes = props => (
       component={UserProfile}
       currentUser={props.currentUser}
     />
-    <PrivateRoute path="/quiz" component={Quiz} />
+    <PrivateRoute
+      path="/quiz"
+      component={Quiz}
+      currentUser={props.currentUser}
+    />
   </Switch>
 );
 

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Results.module.scss";
 import { Option } from "../Option";
 import { Button } from "../Button";
+import UsersApi from "../../backend/user";
 
 export function Results(props) {
   const options = props;
@@ -19,7 +20,17 @@ export function Results(props) {
               action={"/drink/" + drink.idDrink}
             />
             <Button
-              onClick={() => console.log("I was clicked!")}
+              onClick={() => {
+                const favorite = {
+                  drinkName: drink.strDrink,
+                  liquor: "test",
+                  cocktailDbId: drink.idDrink
+                };
+
+                console.log(props);
+
+                UsersApi.favorite(props.currentUser, favorite);
+              }}
               content="Add to Favorites"
             />
           </div>

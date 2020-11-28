@@ -31,26 +31,38 @@ export default class UserApi {
     });
   }
 
-  static show = (userId) => {
-      return fetch(`${REACT_APP_API_URL}/users/${userId}`, {
-        method: "GET",
-      }).then(res => res.json());
-  }
+  static show = userId => {
+    return fetch(`${REACT_APP_API_URL}/users/${userId}`, {
+      method: "GET"
+    }).then(res => res.json());
+  };
 
-  static update = (user) => {
+  static update = user => {
     return fetch(`${REACT_APP_API_URL}/users/${user.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(user)
-    }).then(res => res.json())
-  }
-
-  static destroy = (user) => {
-    return fetch(`${REACT_APP_API_URL}/users/${user.id}`, {
-      method: "DELETE",
     }).then(res => res.json());
-  }
+  };
 
+  static destroy = user => {
+    return fetch(`${REACT_APP_API_URL}/users/${user.id}`, {
+      method: "DELETE"
+    }).then(res => res.json());
+  };
+
+  static favorite = (userId, drink) => {
+    console.log(userId);
+    console.log(drink);
+
+    return fetch(`${REACT_APP_API_URL}/users/${userId}/favorite`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(drink)
+    }).then(res => res.json());
+  };
 }

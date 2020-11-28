@@ -106,10 +106,15 @@ export function Quiz(props) {
     });
   }
 
+  //TODO: use react contexts to pass down current user
   return (
     <>
       {drinks.length !== 0 ? (
-        <Results drinks={shownDrinks} getMoreDrinks={getMoreDrinks} />
+        <Results
+          drinks={shownDrinks}
+          getMoreDrinks={getMoreDrinks}
+          currentUser={props.currentUser}
+        />
       ) : (
         <QuizForm
           question={question}
