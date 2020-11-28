@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./Form.module.scss";
+import { Button } from "../Button";
 
 export function Form(props) {
   return (
-    <div>
+    <div className={props.className}>
       <h4>{props.title}</h4>
       <form onSubmit={props.onSubmit} className={styles["form-flex"]}>
         {props.fields.map(field => (
@@ -22,7 +23,7 @@ export function Form(props) {
           </div>
         ))}
 
-        <button type="submit">{props.submitText}</button>
+        <Button type="submit" content={props.submitText} />
       </form>
     </div>
   );

@@ -27,9 +27,11 @@ export function Results(props) {
                   cocktailDbId: drink.idDrink
                 };
 
-                console.log(props);
+                UsersApi.favorite(props.currentUser, favorite).then(
+                  data => console.log(data)
 
-                UsersApi.favorite(props.currentUser, favorite);
+                  //TODO: add modal here to say the favorite was added, so the user knows
+                );
               }}
               content="Add to Favorites"
             />

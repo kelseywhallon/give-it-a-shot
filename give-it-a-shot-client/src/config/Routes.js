@@ -5,7 +5,7 @@ import { Home } from "../pages/Home";
 import { Quiz } from "../pages/Quiz";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import UserProfile from "../pages/UserProfile";
+import { UserProfile } from "../pages/UserProfile";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const currentUser = localStorage.getItem("id");
