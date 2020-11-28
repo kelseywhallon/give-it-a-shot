@@ -20,4 +20,14 @@ export default class DrinksApi {
       body: JSON.stringify(data)
     }).then(res => res.json());
   }
+
+  // static getDrinkDetails(drink) {
+  //   return fetch(`${REACT_APP_API_URL}/drink/${drink.Id}`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(drink)
+  //   }).then(res => res.json());
+  // }
 }
