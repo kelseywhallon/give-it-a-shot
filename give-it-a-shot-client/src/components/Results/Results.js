@@ -12,10 +12,11 @@ export function Results(props) {
       {props.drinks.map(drink => (
         <Option
           key={drink.strDrink}
+          id={drink.idDrink}
           className="drink"
           name={drink.strDrink}
           image={drink.strDrinkThumb}
-          action={"/drink/" + drink.idDrink}
+          action={"/details/" + drink.idDrink}
         />
       ))}
       <button onClick={props.getMoreDrinks}>Load More Drinks</button>

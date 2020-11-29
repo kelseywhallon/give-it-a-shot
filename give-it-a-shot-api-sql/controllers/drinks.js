@@ -40,23 +40,15 @@ const getRecommendations = (req, res) => {
 // TODO: get drink details function
 const getDrinkDetails = (req, res) => {
 
-  cdbDetails = cdbDetails + idDrink;
+  // let cdbDetails = cdbUrl + 178327;
 
+  "https://www.thecocktaildb.com/api/json/v2/" +
+  process.env.API_KEY +
+  "/lookup.php?i=178327"
   axios 
     .get(cdbDetails)
     .then(response => res.json(response.data.drinks))
     .catch(error => console.error(error));
 };
-
-// const getRandomDrink = (req, res) => {
-//     const randomDrink = 
-//   "https://www.thecocktaildb.com/api/json/v2/" +
-//   process.env.API_KEY +
-//   "/random.php";
-
-//   axios
-//   .post(randomdrink)
-//   .then(res => res.json(res.data.drinks))
-// }
 
 module.exports = { nextQuestion, getRecommendations, getDrinkDetails };

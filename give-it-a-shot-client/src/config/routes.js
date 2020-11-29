@@ -6,6 +6,7 @@ import { Quiz } from "../pages/Quiz";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import UserProfile from "../pages/UserProfile";
+import DrinkDetails from "../pages/DrinkDetails";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const currentUser = localStorage.getItem("id");
@@ -52,10 +53,11 @@ const Routes = props => (
 
     <PrivateRoute
       path="/profile"
-      component={ UserProfile }
+      component={UserProfile}
       currentUser={props.currentUser}
     />
     <PrivateRoute path="/quiz" component={Quiz} />
+    <PrivateRoute path="/drink" component={DrinkDetails} />
   </Switch>
 );
 

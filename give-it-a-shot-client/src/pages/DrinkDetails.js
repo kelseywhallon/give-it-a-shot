@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 
-import { Results } from "../../components/Results";
-import { Option } from "../Option";
-import DrinksApi from "../../backend/drinks";
+import { Results } from "../components/Results";
+import { Option } from "../components/Option";
+import DrinksApi from "../backend/drinks";
 
-import React from 'react'
 
 function DrinkDetails(props) {
+    const results = props;
+
     const [drink, setDrinkDetails] = useState({})
 
-    // useEffect(() => {
-    //     fetchDrink();
-    // }, [])
+    const getDrinkDetails = () => {
+        console.log(props)
+        DrinksApi.getDrinkDetails(props.id).then(data => {
+            console.log(data)
+            setDrinkDetails(data);
+        })
+    }
 
-    // const fetchDrink = () => {
-    //     DrinksApi.DrinkDetails(props.drink).then(data => {
-    //         setDrinkDetails()
-    //     })
-    // }
-    
+    useEffect(() => {
+        getDrinkDetails();
+    }, [])
+
     return (
         <div>
-            
+            <h1>DRINK INFO!</h1>
+            <h3>{props.idDrink}</h3>
         </div>
     )
 }

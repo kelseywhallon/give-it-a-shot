@@ -24,7 +24,7 @@ const UserProfile = props => {
 
     const handleFirstName = e => {
         setFirstName(e.target.value);
-        console.log("inside handelfirstname: " + e)
+        // console.log("inside handelfirstname: " + e)
     }
 
     const handleLastName = e => {
