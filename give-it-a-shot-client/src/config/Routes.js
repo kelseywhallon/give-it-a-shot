@@ -62,7 +62,7 @@ const Routes = props => (
       currentUser={props.currentUser}
     />
     <PrivateRoute
-    path="/drink"
+    path="/drink/"
     component={DrinkDetails}
     />
   </Switch>

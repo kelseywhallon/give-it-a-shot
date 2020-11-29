@@ -1,29 +1,39 @@
 import React, { useState, useEffect } from "react";
-// import { Results } from "../../components/Results";
-// import { Option } from "../../components/Option";
+import ReactDOM from 'react-dom';
+import {
+    BowserRouter as Router,
+    Switch,
+    useLocation
+} from 'react-router-dom';
 import DrinksApi from "../../backend/drinks";
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import styles from "./Details.module.scss";
-import {Button} from '../../components/Button';
+import { Button } from '../../components/Button';
 
 
 export const DrinkDetails = props => {
-
+    const [idDrink, setIdDrink] = useState("")
     const [drink, setDrinkDetails] = useState({})
 
-    useEffect(() => {
-        getDrinkDetails();
-    }, [])
 
-    const getDrinkDetails = () => {
-        DrinksApi.getDrinkDetails(drink).then(data => {
+    const getDrinks = () => {
+        let location = props.history.location
+        console.log(location.pathname)
+        let idDrink = location.pathname.slice(7);
+        console.log(idDrink)
+        
+        DrinksApi.getDrinkDetails(idDrink).then(data => {
             console.log(data[0])
+            setIdDrink(idDrink)
             setDrinkDetails(data[0]);
         })
     }
-
+    
+    useEffect(() => {
+        getDrinks();
+    }, [])
 
     return (
         <div className={`${styles.container} ${styles.options}` }>
@@ -38,7 +48,7 @@ export const DrinkDetails = props => {
                     </p>
                     <p>
                     Type of Glass: 
-                    <br />{drink.strGlass}
+                    <br /> {drink.strGlass}
                     </p>
                 </Card.Text>
             </Card.Body>

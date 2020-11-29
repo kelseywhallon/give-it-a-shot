@@ -44,7 +44,7 @@ const getDrinkDetails = (req, res) => {
   const cdbDetails = 
   "https://www.thecocktaildb.com/api/json/v2/" +
   process.env.API_KEY + 
-  "/lookup.php?i=178327";
+  "/lookup.php?i=" + req.params.idDrink;
 
   axios 
     .get(cdbDetails)
