@@ -7,10 +7,10 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import UserProfile from "../pages/UserProfile";
 import DrinkDetails from "../pages/DrinkDetails";
+import { UserProfile } from "../pages/UserProfile";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const currentUser = localStorage.getItem("id");
-  console.log(currentUser);
   return (
     <Route
       {...rest}
@@ -55,8 +55,11 @@ const Routes = props => (
       component={UserProfile}
       currentUser={props.currentUser}
     />
-    <PrivateRoute path="/quiz" component={Quiz} />
-    <PrivateRoute path="/drink" component={DrinkDetails} />
+    <PrivateRoute
+      path="/quiz"
+      component={Quiz}
+      currentUser={props.currentUser}
+    />
   </Switch>
 );
 
