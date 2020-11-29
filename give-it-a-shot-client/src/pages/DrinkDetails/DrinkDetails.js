@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import styles from "./Details.module.scss";
+import {Button} from '../../components/Button';
 
 
 export const DrinkDetails = props => {
@@ -26,25 +27,35 @@ export const DrinkDetails = props => {
 
     return (
         <div className={`${styles.container} ${styles.options}` }>
-        <Card style={{ width: '20rem' }}>
-            <Card.Img variant="top" src={drink.strDrinkThumb} style={{width:300}}/>
-            <Card.Body>
-                <h1>{drink.strDrink}</h1>
-                <Card.Text>
-                    Drink Category: {drink.strCategory}
-                    <br />
-                    Type of Glass: {drink.strGlass}
+        <Card className={`${styles.card}`} style={{ width: '30rem' }}>
+            <Card.Img className={`${styles.cardImg}`} variant="top" src={drink.strDrinkThumb} />
+            <Card.Body className={`${styles.cardBody}`}>
+                <h1 className={`${styles.drinkName}`}> {drink.strDrink} </h1>
+                <Card.Text className={`${styles.category}`}>
+                    <p>
+                        Drink Category: 
+                        <br /> {drink.strCategory}
+                    </p>
+                    <p>
+                    Type of Glass: 
+                    <br />{drink.strGlass}
+                    </p>
                 </Card.Text>
             </Card.Body>
-            <ListGroup className="list-group-flush">
-                <ListGroupItem style={{size:18}}>Inredients:</ListGroupItem>
+            <ListGroup className={`${styles.ingredients}`}>
+                <h3>Inredients:</h3>
                 <ListGroupItem>{drink.strIngredient1}</ListGroupItem>
                 <ListGroupItem>{drink.strIngredient2}</ListGroupItem>
                 <ListGroupItem>{drink.strIngredient3}</ListGroupItem>
                 <ListGroupItem>{drink.strIngredient4}</ListGroupItem>
             </ListGroup>
             <Card.Footer>
-                <Card.Link href="/quiz">Back to Results</Card.Link>
+                <Button
+                    className={`${styles.detailButton}`}
+                    type="submit"
+                    // onClick={}
+                    content="Back to Results"
+                />
             </Card.Footer>
         </Card>
         </div>
