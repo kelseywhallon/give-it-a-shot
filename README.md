@@ -19,18 +19,18 @@ As fledgling cocktail connoisseurs, we love trying new drinks. But, just like yo
 Our hosted version of this web app can be found at:
 
 But if you'd like to play with the code yourself, please do the following:
-1\. Ensure environment variables are set
+1. Ensure environment variables are set
     \-   `API_KEY`
-2\.  Local database is created, and is set up with the models provided with this repository, and config is changed to point to your database.
-    1\. `cd give-it-a-shot-image-sql`
-    2. `createdb give-it-a-shot`
-    3. Create a config.json:
+2.  Local database is created, and is set up with the models provided with this repository, and config is changed to point to your database.
+    1. `cd give-it-a-shot-image-sql`
+    2\. `createdb give-it-a-shot`
+    3\. Create a config.json:
         \-
-    4\. `sequelize db:migrate`
-3\.  Seed the database with Sequelize:
-    1\.  `cd give-it-a-shot-api-sql`
-    2\.  `sequelize db:seed --seed seeders/20201118201018-image-seeder.js`
-4\.  Dependencies are installed (npm i, both in frontend and backend directories)
+    4. `sequelize db:migrate`
+3.  Seed the database with Sequelize:
+    1.  `cd give-it-a-shot-api-sql`
+    2.  `sequelize db:seed --seed seeders/20201118201018-image-seeder.js`
+4.  Dependencies are installed (npm i, both in frontend and backend directories)
 
 ## React Component Hierarchy - needs to be updated
 
@@ -70,3 +70,4 @@ But if you'd like to play with the code yourself, please do the following:
 -   Create an Account navigation link, with a drop down for "Account Details" and "Favorites"
 -   Redirect user home after registering, instead of logging in
 -   Register/Log in errors - none are thrown, the user has no idea what is happenign
+-   Use React Contexts to avoid explicitly passing props down

@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import UserApi from "../../backend/user";
 import { Form } from "../../components/Form";
 import { Button } from "../../components/Button";
+import { Favorites } from "../../components/Favorites";
 import styles from "./UserProfile.module.scss";
 
 export const UserProfile = props => {
@@ -87,19 +88,22 @@ export const UserProfile = props => {
   ];
 
   return (
-    <>
-      <Form
-        className={styles.margins}
-        title="Account Details"
-        submitText="Update Profile"
-        onSubmit={handleUpdate}
-        fields={fields}
-      />
-      <Button
-        type="submit"
-        onClick={(handleDelete, logout)}
-        content="Delete Account"
-      />
-    </>
+    <div className={styles.layout}>
+      <div>
+        <Form
+          className={styles.margins}
+          title="Account Details"
+          submitText="Update Profile"
+          onSubmit={handleUpdate}
+          fields={fields}
+        />
+        <Button
+          type="submit"
+          onClick={(handleDelete, logout)}
+          content="Delete Account"
+        />
+      </div>
+      <Favorites currentUser={props.currentUser} />
+    </div>
   );
 };
