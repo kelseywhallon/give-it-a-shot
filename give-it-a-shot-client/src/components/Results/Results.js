@@ -1,24 +1,48 @@
 import React from "react";
-import "./style.scss";
+import styles from "./Results.module.scss";
 import { Option } from "../Option";
+import { Button } from "../Button";
+import UsersApi from "../../backend/user";
 
 export function Results(props) {
   const options = props;
   return (
-    <div>
+    <>
       <h1>Your Recommendations</h1>
+      <div className={`${styles.options} ${styles.container}`}>
+        {/* (...) is an implicit return; no need to use return keyword */}
+        {props.drinks.map(drink => (
+          <div key={drink.strDrink}>
+            <Option
+              className={styles.option}
+              name={drink.strDrink}
+              image={drink.strDrinkThumb}
+              action={"/drink/" + drink.idDrink}
+            />
+            <Button
+              onClick={() => {
+                const favorite = {
+                  drinkName: drink.strDrink,
+                  liquor: "test",
+                  cocktailDbId: drink.idDrink
+                };
 
-      {/* (...) is an implicit return; no need to use return keyword */}
-      {props.drinks.map(drink => (
-        <Option
-          key={drink.strDrink}
-          className="drink"
-          name={drink.strDrink}
-          image={drink.strDrinkThumb}
-          action={"/drink/" + drink.idDrink}
-        />
-      ))}
-      <button onClick={props.getMoreDrinks}>Load More Drinks</button>
-    </div>
+                UsersApi.favorite(props.currentUser, favorite).then(
+                  data => console.log(data)
+
+                  //TODO: add modal here to say the favorite was added, so the user knows
+                );
+              }}
+              content="Add to Favorites"
+            />
+          </div>
+        ))}
+      </div>
+      <Button
+        className="submitButton"
+        onClick={props.getMoreDrinks}
+        content="Load More Drinks"
+      />
+    </>
   );
 }

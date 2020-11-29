@@ -4,7 +4,7 @@ import "./Header.scss";
 
 export const Header = props => {
   const loggedIn = (
-    <div class="header">
+    <div className="header">
       <div className="logo">
         <Link to={"/"}>Home</Link>
         <Link to={"/profile"}>My Profile</Link>
