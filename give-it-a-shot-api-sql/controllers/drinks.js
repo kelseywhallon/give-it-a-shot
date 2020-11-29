@@ -40,11 +40,12 @@ const getRecommendations = (req, res) => {
 // TODO: get drink details function
 const getDrinkDetails = (req, res) => {
 
-  // let cdbDetails = cdbUrl + 178327;
-
+  // cdbUrl + req.params.idDrink;
+  const cdbDetails = 
   "https://www.thecocktaildb.com/api/json/v2/" +
-  process.env.API_KEY +
-  "/lookup.php?i=178327"
+  process.env.API_KEY + 
+  "/lookup.php?i=178327";
+
   axios 
     .get(cdbDetails)
     .then(response => res.json(response.data.drinks))

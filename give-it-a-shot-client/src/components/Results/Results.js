@@ -16,6 +16,7 @@ export function Results(props) {
             <Option
               className={styles.option}
               name={drink.strDrink}
+              idDrink={drink.idDrink}
               image={drink.strDrinkThumb}
               action={"/drink/" + drink.idDrink}
             />
