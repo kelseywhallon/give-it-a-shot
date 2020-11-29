@@ -69,3 +69,4 @@ But if you'd like to play with the code yourself, please do the following:
 -   Only suggest the ingredients that pair with the appropriate liquor, instead of all ingredients
 -   Create an Account navigation link, with a drop down for "Account Details" and "Favorites"
 -   Redirect user home after registering, instead of logging in
+-   Register/Log in errors - none are thrown, the user has no idea what is happenign

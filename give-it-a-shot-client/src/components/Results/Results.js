@@ -24,7 +24,8 @@ export function Results(props) {
                 const favorite = {
                   drinkName: drink.strDrink,
                   liquor: "test",
-                  cocktailDbId: drink.idDrink
+                  cocktailDbId: drink.idDrink,
+                  imageUrl: drink.strDrinkThumb
                 };
 
                 UsersApi.favorite(props.currentUser, favorite).then(
