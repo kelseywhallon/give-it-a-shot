@@ -36,16 +36,16 @@ The backend uses _Express.js_ on the _Node.js_ runtime. Our database is _Postgre
 Our hosted version of this web app can be found at: _not hosted yet, we need to deploy still :)_
 
 But if you'd like to play with the code yourself, please do the following:
-1\. Ensure environment variables are set
+1. Ensure environment variables are set
 \- `API_KEY`
-2\. Local database is created, and is set up with the models provided with this repository, and config is changed to point to your database.
-1\. `cd give-it-a-shot-image-sql` 2. `createdb give-it-a-shot` 3. Create a config.json:
+2. Local database is created, and is set up with the models provided with this repository, and config is changed to point to your database.
+1. `cd give-it-a-shot-image-sql` 2. `createdb give-it-a-shot` 3. Create a config.json:
 \-
-4\. `sequelize db:migrate`
-3\. Seed the database with Sequelize:
-1\. `cd give-it-a-shot-api-sql`
-2\. `sequelize db:seed --seed seeders/20201118201018-image-seeder.js`
-4\. Dependencies are installed (npm i, both in frontend and backend directories)
+4. `sequelize db:migrate`
+3. Seed the database with Sequelize:
+1. `cd give-it-a-shot-api-sql`
+2. `sequelize db:seed --seed seeders/20201118201018-image-seeder.js`
+4. Dependencies are installed (npm i, both in frontend and backend directories)
 
 ## React Component Hierarchy
 
@@ -81,6 +81,15 @@ We used [this Trello board](https://trello.com/b/eroCMlow/mezcalcoholics) to man
 ![Wireframes](images/wireframe.png)
 
 ## Code Snippets
+
+[Client Side Routing](https://github.com/kelseywhallon/give-it-a-shot/blob/submain/give-it-a-shot-client/src/config/Routes.js)
+
+### Kelsey
+
+### Derek
+
+1.  [images - `fs` module parsing](https://github.com/kelseywhallon/give-it-a-shot/blob/submain/give-it-a-shot-api-sql/data/images.js)
+2.  [Option Component](https://github.com/kelseywhallon/give-it-a-shot/blob/submain/give-it-a-shot-client/src/components/Option/Option.js)
 
 ## Future Development
 

@@ -5,8 +5,6 @@ import { Home } from "../pages/Home";
 import { Quiz } from "../pages/Quiz";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-// import UserProfile from "../pages/UserProfile";
-// import DrinkDetails from "../pages/DrinkDetails";
 import { UserProfile } from "../pages/UserProfile";
 import { DrinkDetails } from "../pages/DrinkDetails";
 
@@ -61,10 +59,7 @@ const Routes = props => (
       component={Quiz}
       currentUser={props.currentUser}
     />
-    <PrivateRoute
-    path="/drink/"
-    component={DrinkDetails}
-    />
+    <PrivateRoute path="/drink/" component={DrinkDetails} />
   </Switch>
 );
 
