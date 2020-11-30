@@ -1,3 +1,5 @@
+@import "../../assets/globals";
+
 .container {
   margin: 0 auto;
   width: 85%;
@@ -11,12 +13,13 @@
   gap: 15px 0;
 }
 
-.option {
-  img {
-    width: 250px;
-  }
-}
-
 .submitButton {
   margin-bottom: 70px;
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  .options {
+    grid-template-columns: 100%;
+    gap: 20px;
+  }
 }

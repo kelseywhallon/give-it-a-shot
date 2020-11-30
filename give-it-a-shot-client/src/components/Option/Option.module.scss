@@ -1,3 +1,5 @@
+@import "../../assets/globals";
+
 .option {
   display: flex;
   flex-flow: column wrap;
@@ -12,5 +14,15 @@
   &:hover,
   &:focus {
     outline: 2px solid #1b4332;
+  }
+
+  img {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  .option img {
+    width: 100px;
   }
 }
