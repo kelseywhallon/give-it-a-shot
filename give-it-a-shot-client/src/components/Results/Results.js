@@ -20,6 +20,7 @@ export function Results(props) {
               action={"/drink/" + drink.idDrink}
             />
             <Button
+              small={true}
               onClick={() => {
                 const favorite = {
                   drinkName: drink.strDrink,
@@ -40,7 +41,7 @@ export function Results(props) {
         ))}
       </div>
       <Button
-        className="submitButton"
+        className={styles["submitButton"]}
         onClick={props.getMoreDrinks}
         content="Load More Drinks"
       />

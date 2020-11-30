@@ -18,6 +18,11 @@ $button-color: #1b4332;
   }
 }
 
+.small {
+  min-width: 100px;
+  font-size: 14px;
+}
+
 .link {
   display: inline-block;
   width: 100%;
