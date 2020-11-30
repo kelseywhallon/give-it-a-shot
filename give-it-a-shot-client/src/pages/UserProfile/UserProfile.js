@@ -5,13 +5,15 @@ import { Form } from "../../components/Form";
 import { Button } from "../../components/Button";
 import { Favorites } from "../../components/Favorites";
 import styles from "./UserProfile.module.scss";
-import { vw, getViewport } from "../../utility";
+import { vw, mobileBreakpoint, getViewport } from "../../utility";
 
 export const UserProfile = props => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [smallButton, setSmallButton] = useState(vw > 769 ? false : true);
+  const [smallButton, setSmallButton] = useState(
+    vw > mobileBreakpoint ? false : true
+  );
 
   const fetchUser = () => {
     UserApi.show(props.currentUser).then(data => {
@@ -24,7 +26,7 @@ export const UserProfile = props => {
   const changeSmallButton = () => {
     const [vw, vh] = getViewport();
 
-    setSmallButton(vw > 769 ? false : true);
+    setSmallButton(vw > mobileBreakpoint ? false : true);
   };
 
   window.addEventListener("resize", changeSmallButton);

@@ -1,4 +1,5 @@
 export const vw = getViewport()[0];
+export const mobileBreakpoint = 769;
 
 /**
  * Helpers
