@@ -16,16 +16,16 @@ header {
   justify-content: space-between;
   font-size: 24px;
 
+  h1 {
+    margin: 0 auto;
+  }
+
   button {
     // &:disabled {
     background: transparent;
     border: none;
     outline: none;
     // }
-
-    h1 {
-      margin: 0 auto;
-    }
   }
 
   a {
