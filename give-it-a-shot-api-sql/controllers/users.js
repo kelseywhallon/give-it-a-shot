@@ -52,7 +52,8 @@ const favorite = (req, res) => {
         where: {
           name: req.body.drinkName,
           liquor: req.body.liquor,
-          cocktailDbId: req.body.cocktailDbId
+          cocktailDbId: req.body.cocktailDbId,
+          imageUrl: req.body.imageUrl
         }
       })
       .then(([returnedDrink, created]) => {
@@ -67,9 +68,18 @@ const favorite = (req, res) => {
   });
 };
 
+const favorites = (req, res) => {
+  db.user.findByPk(req.params.id).then(foundUser => {
+    foundUser.getDrinks().then(favorites => {
+      res.json(favorites);
+    });
+  });
+};
+
 module.exports = {
   show,
   update,
   destroy,
-  favorite
+  favorite,
+  favorites
 };

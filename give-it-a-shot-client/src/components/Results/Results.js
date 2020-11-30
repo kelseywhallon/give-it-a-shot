@@ -8,7 +8,7 @@ export function Results(props) {
   const options = props;
   return (
     <>
-      <h1>Your Recommendations</h1>
+      <h2>Your Recommendations</h2>
       <div className={`${styles.options} ${styles.container}`}>
         {/* (...) is an implicit return; no need to use return keyword */}
         {props.drinks.map(drink => (
@@ -25,7 +25,8 @@ export function Results(props) {
                 const favorite = {
                   drinkName: drink.strDrink,
                   liquor: "test",
-                  cocktailDbId: drink.idDrink
+                  cocktailDbId: drink.idDrink,
+                  imageUrl: drink.strDrinkThumb
                 };
 
                 UsersApi.favorite(props.currentUser, favorite).then(

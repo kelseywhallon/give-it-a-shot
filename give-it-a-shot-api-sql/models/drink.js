@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       liquor: DataTypes.STRING,
       category: DataTypes.STRING,
-      cocktailDbId: DataTypes.STRING
+      cocktailDbId: DataTypes.STRING,
+      imageUrl: DataTypes.STRING
     },
     {
       sequelize,

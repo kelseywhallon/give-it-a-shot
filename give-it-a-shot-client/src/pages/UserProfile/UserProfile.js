@@ -3,17 +3,13 @@ import { Redirect } from "react-router-dom";
 import UserApi from "../../backend/user";
 import { Form } from "../../components/Form";
 import { Button } from "../../components/Button";
+import { Favorites } from "../../components/Favorites";
 import styles from "./UserProfile.module.scss";
 
 export const UserProfile = props => {
-  const [user, setUser] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
 
   const fetchUser = () => {
     // console.log(props.currentUser)
@@ -24,6 +20,8 @@ export const UserProfile = props => {
       setEmail(data.user.email);
     });
   };
+
+  useEffect(fetchUser, [props.currentUser]);
 
   const handleFirstName = e => {
     setFirstName(e.target.value);
@@ -69,7 +67,7 @@ export const UserProfile = props => {
   const logout = () => {
     localStorage.removeItem("id");
     UserApi.logout().then(res => {
-      setUser(null);
+      // setUser(null);
     });
   };
 
@@ -90,19 +88,22 @@ export const UserProfile = props => {
   ];
 
   return (
-    <>
-      <Form
-        className={styles.margins}
-        title="Account Details"
-        submitText="Update Profile"
-        onSubmit={handleUpdate}
-        fields={fields}
-      />
-      <Button
-        type="submit"
-        onClick={(handleDelete, logout)}
-        content="Delete Account"
-      />
-    </>
+    <div className={styles.layout}>
+      <div>
+        <Form
+          className={styles.margins}
+          title="Account Details"
+          submitText="Update Profile"
+          onSubmit={handleUpdate}
+          fields={fields}
+        />
+        <Button
+          type="submit"
+          onClick={(handleDelete, logout)}
+          content="Delete Account"
+        />
+      </div>
+      <Favorites currentUser={props.currentUser} />
+    </div>
   );
 };

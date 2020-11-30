@@ -5,7 +5,7 @@ import { Button } from "../Button";
 export function Form(props) {
   return (
     <div className={props.className}>
-      <h4>{props.title}</h4>
+      <h2>{props.title}</h2>
       <form onSubmit={props.onSubmit} className={styles["form-flex"]}>
         {props.fields.map(field => (
           <div key={field.name} className={styles["form-group"]}>

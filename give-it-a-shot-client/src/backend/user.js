@@ -65,4 +65,10 @@ export default class UserApi {
       body: JSON.stringify(drink)
     }).then(res => res.json());
   };
+
+  static favorites = userId => {
+    return fetch(`${REACT_APP_API_URL}/users/${userId}/favorites`).then(res =>
+      res.json()
+    );
+  };
 }
