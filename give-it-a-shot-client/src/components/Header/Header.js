@@ -5,7 +5,9 @@ import { getViewport } from "../../utility";
 
 export const Header = props => {
   const [toggleDisplay, setToggleDisplay] = useState(true);
-  const [headerDisabled, setHeaderDisabled] = useState(true);
+  const [headerDisabled, setHeaderDisabled] = useState(
+    getViewport()[0] > 769 ? true : false
+  );
 
   const toggleMenu = () => {
     setToggleDisplay(!toggleDisplay);
@@ -13,8 +15,6 @@ export const Header = props => {
 
   const responsiveChange = () => {
     const [vw, vh] = getViewport();
-
-    console.log(vw);
 
     if (vw > 769) {
       setToggleDisplay(true);
