@@ -12,6 +12,12 @@ $button-color: #1b4332;
   transition: all 0.7s;
   cursor: pointer;
 
+  &:focus {
+    outline: none;
+    background: $button-color;
+    color: $white;
+  }
+
   &:hover {
     color: $button-color;
     background-color: $white;
