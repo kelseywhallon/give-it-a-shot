@@ -5,7 +5,7 @@ import styles from "./Button.module.scss";
 export function Button(props) {
   return (
     <button
-      className={`${styles.button} ${props.className} ${
+      className={`${styles.button} ${props.className ? props.className : ""} ${
         props.small ? styles.small : null
       }`}
       type={props.type}

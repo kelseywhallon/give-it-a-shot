@@ -15,7 +15,7 @@ body {
 button {
   font-family: "NunitoBold", sans-serif;
 }
-
+// $black
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -23,6 +23,12 @@ code {
 
 a {
   text-decoration: none;
+  color: darken($link-color, 35%);
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $link-color;
+  }
 }
 
 h1 {
