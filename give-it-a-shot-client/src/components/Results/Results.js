@@ -8,7 +8,7 @@ export function Results(props) {
   const options = props;
   return (
     <>
-      <h1>Your Recommendations</h1>
+      <h2>Your Recommendations</h2>
       <div className={`${styles.options} ${styles.container}`}>
         {/* (...) is an implicit return; no need to use return keyword */}
         {props.drinks.map(drink => (

@@ -2,18 +2,32 @@
 
 $text-color: #40916c;
 
+header,
+h1 {
+  color: $text-color;
+  font-family: "NunitoBoldItalic", sans-serif;
+}
+
 header {
   background-color: rgba(239, 250, 241, 0.55);
   // border: 1px solid white;
-  color: $text-color;
+
   text-align: center;
   padding: 20px 10px;
   display: flex;
   justify-content: space-between;
-  font: 20px "NunitoBoldItalic", sans-serif;
+  font-size: 24px;
 
-  h1 {
-    margin: 0 auto;
+  button {
+    // &:disabled {
+    background: transparent;
+    border: none;
+    outline: none;
+    // }
+
+    h1 {
+      margin: 0 auto;
+    }
   }
 
   a {
@@ -56,4 +70,34 @@ header {
   h1 {
     display: inline-block;
   }
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  header {
+    font-size: 12px;
+    padding: 10px 0 0;
+  }
+
+  .header {
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 100%;
+  }
+
+  .logo {
+    grid-row: 2 / 3;
+    flex-flow: column wrap;
+  }
+
+  .links {
+    grid-row: 3 / 3;
+    margin: auto;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
 }

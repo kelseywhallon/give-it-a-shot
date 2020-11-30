@@ -71,3 +71,4 @@ But if you'd like to play with the code yourself, please do the following:
 -   Redirect user home after registering, instead of logging in
 -   Register/Log in errors - none are thrown, the user has no idea what is happenign
 -   Use React Contexts to avoid explicitly passing props down
+-   Update "Load More" button
