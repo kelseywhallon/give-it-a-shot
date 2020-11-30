@@ -23,7 +23,11 @@ export function Form(props) {
           </div>
         ))}
 
-        <Button type="submit" content={props.submitText} />
+        <Button
+          small={props.smallButton}
+          type="submit"
+          content={props.submitText}
+        />
       </form>
     </div>
   );

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
-import { getViewport } from "../../utility";
+import { vw, getViewport } from "../../utility";
 
 export const Header = props => {
   const [toggleDisplay, setToggleDisplay] = useState(true);
-  const [headerDisabled, setHeaderDisabled] = useState(
-    getViewport()[0] > 769 ? true : false
-  );
+  const [headerDisabled, setHeaderDisabled] = useState(vw > 769 ? true : false);
 
   const toggleMenu = () => {
     setToggleDisplay(!toggleDisplay);
@@ -25,7 +23,7 @@ export const Header = props => {
     }
   };
 
-  window.onresize = responsiveChange;
+  window.addEventListener("resize", responsiveChange);
 
   const loggedIn = (
     <div className={`${toggleDisplay ? null : styles.block} ${styles.header}`}>
