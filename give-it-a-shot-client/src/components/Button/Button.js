@@ -6,8 +6,8 @@ export function Button(props) {
   return (
     <button
       className={`${styles.button} ${props.className ? props.className : ""} ${
-        props.small ? styles.small : null
-      }`}
+        props.small ? styles.small : ""
+      } ${props.large ? styles.large : ""}`}
       type={props.type}
       onClick={props.onClick}
     >
@@ -22,5 +22,12 @@ export function ButtonLink(props) {
       {props.text}
     </Link>
   );
-  return <Button className={props.className} content={content} />;
+  return (
+    <Button
+      large={props.large}
+      small={props.small}
+      className={props.className}
+      content={content}
+    />
+  );
 }

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
-import { vw, getViewport } from "../../utility";
+import { vw, mobileBreakpoint, getViewport } from "../../utility";
 
 export const Header = props => {
   const [toggleDisplay, setToggleDisplay] = useState(true);
-  const [headerDisabled, setHeaderDisabled] = useState(vw > 769 ? true : false);
+  const [headerDisabled, setHeaderDisabled] = useState(
+    vw > mobileBreakpoint ? true : false
+  );
 
   const toggleMenu = () => {
     setToggleDisplay(!toggleDisplay);
@@ -14,10 +16,10 @@ export const Header = props => {
   const responsiveChange = () => {
     const [vw, vh] = getViewport();
 
-    if (vw > 769) {
+    if (vw > mobileBreakpoint) {
       setToggleDisplay(true);
       setHeaderDisabled(true);
-    } else if (vw <= 769) {
+    } else if (vw <= mobileBreakpoint) {
       setToggleDisplay(false);
       setHeaderDisabled(false);
     }

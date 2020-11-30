@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
-
 import { QuizForm } from "../../components/QuizForm";
 import { Results } from "../../components/Results";
 import DrinksApi from "../../backend/drinks";
 
 export function Quiz(props) {
   //TODO: implement going back
-  const backListener = props.history.listen((location, action) => {
-    if (action === "POP") {
-      console.log("hiiiii");
-      // props.history.goBack();
-    }
-  });
 
   const [question, setQuestion] = useState({
     id: 1,
@@ -40,10 +32,15 @@ export function Quiz(props) {
 
   const getResults = () => {
     DrinksApi.getResults(results).then(data => {
-      setDrinks(data);
-      if (data.length > 2) {
-        setShownIndex(2);
-        setShownDrinks([data[0], data[1]]);
+      if (data.length > 0) {
+        const shownDrinks = [];
+        for (let i = 0; i < 2; i++) {
+          shownDrinks.push(data[i]);
+        }
+
+        setDrinks(data);
+        setShownIndex(shownDrinks.length);
+        setShownDrinks(shownDrinks);
       }
     });
   };
@@ -57,12 +54,13 @@ export function Quiz(props) {
     }
 
     if (shownDrinks.length >= drinks.length) {
-      console.log("hsdhsdhsh");
-      // set another state variable with text to say no more?
+      console.log(
+        "Need to add pop up here to alert user no more drinks available"
+      );
+      // TODO: add modal here to pop up and say no more drinks available
     } else {
       setShownIndex(shownDrinks.length);
       setShownDrinks(shownDrinks);
-      console.log(shownDrinks)
     }
   };
 
@@ -92,14 +90,7 @@ export function Quiz(props) {
     }
   };
 
-  useEffect(() => {
-    getNextQuestion();
-
-    return function() {
-      console.log("yooo");
-      backListener();
-    };
-  }, [currentPage]);
+  useEffect(getNextQuestion, [currentPage]);
 
   function getNextQuestion() {
     DrinksApi.nextQuestion(currentPage).then(data => {

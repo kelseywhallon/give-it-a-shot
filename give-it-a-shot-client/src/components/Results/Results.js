@@ -1,9 +1,9 @@
-
-import React  from 'react';
+import React from "react";
 import styles from "./Results.module.scss";
 import { Option } from "../Option";
 import { Button } from "../Button";
 import UsersApi from "../../backend/user";
+import { FavModal } from '../Modal/FavModal';
 
 export function Results(props) {
   const options = props;

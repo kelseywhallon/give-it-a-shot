@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserApi from "../../backend/user";
+import { Option } from "../Option";
 import styles from "./Favorites.module.scss";
 
 export function Favorites(props) {
@@ -18,8 +19,13 @@ export function Favorites(props) {
       <h2>Your Favorites</h2>
       {favorites.map(favorite => (
         <div key={favorite.id} className={styles.fave}>
-          <h4>{favorite.name}</h4>
-          <img src={favorite.imageUrl} alt="" />
+          <Option
+            key={favorite.id}
+            name={favorite.name}
+            idDrink={favorite.id}
+            image={favorite.imageUrl}
+            action={"/drink/" + favorite.cocktailDbId}
+          />
         </div>
       ))}
     </div>
