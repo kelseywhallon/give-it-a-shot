@@ -7,6 +7,14 @@ import styles from "./Details.module.scss";
 import { Button } from '../../components/Button';
 
 
+export const withRouter = (({ history }) => {
+    return (
+        <div>
+            <button onClick={() => history.goBack()}>Back to Results</button>
+        </div>
+    )
+});
+
 export const DrinkDetails = props => {
     console.log(props)
     const backListener = props.history.listen((location, action) => {
@@ -42,6 +50,13 @@ export const DrinkDetails = props => {
                 <Card.Img className={`${styles.cardImg}`} variant="top" src={drink.strDrinkThumb} />
                 <Card.Body className={`${styles.cardBody}`}>
                     <h1 className={`${styles.drinkName}`}> {drink.strDrink} </h1>
+                    <ListGroup className={`${styles.ingredients}`}>
+                        <h3>Inredients:</h3>
+                        <ListGroupItem>{drink.strIngredient1}</ListGroupItem>
+                        <ListGroupItem>{drink.strIngredient2}</ListGroupItem>
+                        <ListGroupItem>{drink.strIngredient3}</ListGroupItem>
+                        <ListGroupItem>{drink.strIngredient4}</ListGroupItem>
+                    </ListGroup>
                     <Card.Text className={`${styles.category}`}>
                         <p>
                             Drink Category:
@@ -53,21 +68,15 @@ export const DrinkDetails = props => {
                         </p>
                     </Card.Text>
                 </Card.Body>
-                <ListGroup className={`${styles.ingredients}`}>
-                    <h3>Inredients:</h3>
-                    <ListGroupItem>{drink.strIngredient1}</ListGroupItem>
-                    <ListGroupItem>{drink.strIngredient2}</ListGroupItem>
-                    <ListGroupItem>{drink.strIngredient3}</ListGroupItem>
-                    <ListGroupItem>{drink.strIngredient4}</ListGroupItem>
-                </ListGroup>
                 <Card.Footer>
                     <Button
                         className={`${styles.detailButton}`}
                         type="submit"
                         onClick={() => props.history.push
                             ({
-                                pathname:'/quiz',
-                            }) 
+                                pathname: '/quiz',
+                                state: { currentPage: 1 }
+                            })
                         }
                         content="Back to Results"
                     />
