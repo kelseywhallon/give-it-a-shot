@@ -5,21 +5,29 @@ import { Form } from "../../components/Form";
 import { Button } from "../../components/Button";
 import { Favorites } from "../../components/Favorites";
 import styles from "./UserProfile.module.scss";
+import { vw, getViewport } from "../../utility";
 
 export const UserProfile = props => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [smallButton, setSmallButton] = useState(vw > 769 ? false : true);
 
   const fetchUser = () => {
-    // console.log(props.currentUser)
     UserApi.show(props.currentUser).then(data => {
-      // console.log(data)
       setFirstName(data.user.firstName);
       setLastName(data.user.lastName);
       setEmail(data.user.email);
     });
   };
+
+  const changeSmallButton = () => {
+    const [vw, vh] = getViewport();
+
+    setSmallButton(vw > 769 ? false : true);
+  };
+
+  window.addEventListener("resize", changeSmallButton);
 
   useEffect(fetchUser, [props.currentUser]);
 
@@ -91,6 +99,7 @@ export const UserProfile = props => {
     <div className={styles.layout}>
       <div>
         <Form
+          smallButton={smallButton}
           className={styles.margins}
           title="Account Details"
           submitText="Update Profile"
@@ -99,6 +108,7 @@ export const UserProfile = props => {
         />
         <Button
           type="submit"
+          small={smallButton}
           onClick={(handleDelete, logout)}
           content="Delete Account"
         />
