@@ -104,3 +104,6 @@ We used [this Trello board](https://trello.com/b/eroCMlow/mezcalcoholics) to man
 -   Use React Contexts to avoid explicitly passing props down
 -   Update "Load More" button to use modal
 -   Random drink button
+
+### Credits
+ - Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
