@@ -1,3 +1,5 @@
+export const vw = getViewport()[0];
+
 /**
  * Helpers
  */

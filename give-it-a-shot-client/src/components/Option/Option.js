@@ -4,14 +4,14 @@ import styles from "./Option.module.scss";
 export function Option(props) {
   return typeof props.action === "string" ? (
     <OptionLink
-      className={`${props.className} ${styles.option}`}
+      className={`${props.className ? props.className : ""} ${styles.option}`}
       name={props.name}
       image={props.image}
       link={props.action}
     />
   ) : (
     <OptionButton
-      className={`${props.className} ${styles.option}`}
+      className={`${props.className ? props.className : ""} ${styles.option}`}
       name={props.name}
       image={props.image}
       onClick={props.action}
@@ -21,25 +21,33 @@ export function Option(props) {
 
 function OptionLink(props) {
   return (
-    <a href={props.link} className={props.className}>
-      <OptionContent name={props.name} image={props.image} />
+    <a href={props.link} className={styles.link}>
+      <OptionContent
+        className={props.className}
+        name={props.name}
+        image={props.image}
+      />
     </a>
   );
 }
 
 function OptionButton(props) {
   return (
-    <button onClick={props.onClick} className={props.className}>
-      <OptionContent name={props.name} image={props.image} />
+    <button onClick={props.onClick} className={styles.button}>
+      <OptionContent
+        className={props.className}
+        name={props.name}
+        image={props.image}
+      />
     </button>
   );
 }
 
 function OptionContent(props) {
   return (
-    <>
+    <div className={props.className}>
       <img src={props.image} alt="" />
-      {props.name}
-    </>
+      <div>{props.name}</div>
+    </div>
   );
 }

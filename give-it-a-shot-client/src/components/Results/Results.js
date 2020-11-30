@@ -14,15 +14,16 @@ export function Results(props) {
       <div className={`${styles.options} ${styles.container}`}>
         {/* (...) is an implicit return; no need to use return keyword */}
         {props.drinks.map(drink => (
-          <div key={drink.strDrink}>
+          <div key={drink.strDrink} className={styles.option}>
             <Option
-              className={styles.option}
               name={drink.strDrink}
               idDrink={drink.idDrink}
               image={drink.strDrinkThumb}
               action={"/drink/" + drink.idDrink}
             />
             <Button
+              small={true}
+              className={styles.favoriteButton}
               onClick={() => {
                 const favorite = {
                   drinkName: drink.strDrink,
@@ -43,7 +44,7 @@ export function Results(props) {
         ))}
       </div>
       <Button
-        className="submitButton"
+        className={styles["submitButton"]}
         onClick={props.getMoreDrinks}
         content="Load More Drinks"
       />
