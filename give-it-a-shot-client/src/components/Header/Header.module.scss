@@ -71,11 +71,15 @@ header {
 
 @media screen and (max-width: $mobile-breakpoint) {
   header {
-    font-size: 12px;
     padding: 10px 0 0;
   }
 
+  .header a {
+    font-size: 16px;
+  }
+
   .header {
+    font-size: 16px;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 100%;
   }

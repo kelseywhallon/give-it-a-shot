@@ -41,18 +41,18 @@ export const DrinkDetails = props => {
         <Card.Body className={`${styles.cardBody}`}>
           <h1 className={`${styles.drinkName}`}> {drink.strDrink} </h1>
           <Card.Text className={`${styles.category}`}>
-            <p>
-              Drink Category:
-              <br /> {drink.strCategory}
-            </p>
-            <p>
-              Type of Glass:
-              <br /> {drink.strGlass}
-            </p>
+            <div>
+              <h5>Drink Category:</h5>
+              {drink.strCategory}
+            </div>
+            <div>
+              <h5>Type of Glass:</h5>
+              {drink.strGlass}
+            </div>
           </Card.Text>
         </Card.Body>
         <ListGroup className={`${styles.ingredients}`}>
-          <h3>Ingredients:</h3>
+          <h5>Ingredients:</h5>
           <ListGroupItem>{drink.strIngredient1}</ListGroupItem>
           <ListGroupItem>{drink.strIngredient2}</ListGroupItem>
           <ListGroupItem>{drink.strIngredient3}</ListGroupItem>
