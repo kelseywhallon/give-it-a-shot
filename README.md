@@ -85,6 +85,8 @@ We used [this Trello board](https://trello.com/b/eroCMlow/mezcalcoholics) to man
 [Client Side Routing](https://github.com/kelseywhallon/give-it-a-shot/blob/submain/give-it-a-shot-client/src/config/Routes.js)
 
 ### Kelsey
+1. [Drink Details](give-it-a-shot-client/src/pages/DrinkDetails/DrinkDetails.js)
+2. [User CRUD](give-it-a-shot-client/src/pages/UserProfile/UserProfile.js)
 
 ### Derek
 
