@@ -1,16 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Header.scss";
+import styles from "./Header.module.scss";
+import { getViewport } from "../../utility";
 
 export const Header = props => {
+  const [toggleDisplay, setToggleDisplay] = useState(true);
+  const [headerDisabled, setHeaderDisabled] = useState(
+    getViewport()[0] > 769 ? true : false
+  );
+
+  const toggleMenu = () => {
+    setToggleDisplay(!toggleDisplay);
+  };
+
+  const responsiveChange = () => {
+    const [vw, vh] = getViewport();
+
+    if (vw > 769) {
+      setToggleDisplay(true);
+      setHeaderDisabled(true);
+    } else if (vw <= 769) {
+      setToggleDisplay(false);
+      setHeaderDisabled(false);
+    }
+  };
+
+  window.onresize = responsiveChange;
+
   const loggedIn = (
-    <div className="header">
-      <div className="logo">
+    <div className={`${toggleDisplay ? null : styles.block} ${styles.header}`}>
+      <div className={`${toggleDisplay ? null : styles.hidden} ${styles.logo}`}>
         <Link to={"/"}>Home</Link>
         <Link to={"/profile"}>My Profile</Link>
       </div>
-      <h1>Give It A Shot</h1>
-      <div className="links">
+      <button
+        className={styles["header-button"]}
+        disabled={headerDisabled}
+        onClick={toggleMenu}
+      >
+        <h1>Give It A Shot</h1>
+      </button>
+      <div
+        className={`${toggleDisplay ? null : styles.hidden} ${styles.links}`}
+      >
         <a href="/logout" onClick={props.logout}>
           Log Out
         </a>
