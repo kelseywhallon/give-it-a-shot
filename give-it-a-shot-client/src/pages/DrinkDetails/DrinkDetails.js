@@ -64,9 +64,11 @@ export const DrinkDetails = props => {
                     <Button
                         className={`${styles.detailButton}`}
                         type="submit"
-                        onClick={() => props.history.push({
-                            pathname:'/quiz',
-                        }) }
+                        onClick={() => props.history.push
+                            ({
+                                pathname:'/quiz',
+                            }) 
+                        }
                         content="Back to Results"
                     />
                 </Card.Footer>

@@ -12,9 +12,9 @@ export const Home = props => {
           <h2 className={`${styles.mainIcon} ${styles.centered}`}>
             Welcome Home.. Grab a Drink 🍸{" "}
           </h2>
-          <h2 className={`${styles.home2} ${styles.centered}`}>
+          {/* <h2 className={`${styles.home2} ${styles.centered}`}>
             Profile of user with ID {props.currentUser}
-          </h2>
+          </h2> */}
           <ButtonLink
             className={`${styles.home3} ${styles.centered}`}
             path="/quiz"
