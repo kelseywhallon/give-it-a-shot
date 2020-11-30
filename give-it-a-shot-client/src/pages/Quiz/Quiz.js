@@ -62,6 +62,7 @@ export function Quiz(props) {
     } else {
       setShownIndex(shownDrinks.length);
       setShownDrinks(shownDrinks);
+      console.log(shownDrinks)
     }
   };
 
