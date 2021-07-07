@@ -12,11 +12,11 @@ export const Home = props => {
   const [desktop, setDesktop] = useState(vw > mobileBreakpoint ? true : false);
 
   const checkViewport = () => {
-    const [vw, vh] = getViewport();
+    const currentVw = getViewport()[0];
 
-    if (vw > mobileBreakpoint) {
+    if (currentVw > mobileBreakpoint) {
       setDesktop(true);
-    } else if (vw <= mobileBreakpoint) {
+    } else if (currentVw <= mobileBreakpoint) {
       setDesktop(false);
     }
   };

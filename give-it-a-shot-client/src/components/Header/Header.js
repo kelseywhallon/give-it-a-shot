@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { vw, mobileBreakpoint, getViewport } from "../../utility";
@@ -14,12 +14,12 @@ export const Header = props => {
   };
 
   const responsiveChange = () => {
-    const [vw, vh] = getViewport();
+    const currentVw = getViewport()[0];
 
-    if (vw > mobileBreakpoint) {
+    if (currentVw > mobileBreakpoint) {
       setToggleDisplay(true);
       setHeaderDisabled(true);
-    } else if (vw <= mobileBreakpoint) {
+    } else if (currentVw <= mobileBreakpoint) {
       setToggleDisplay(false);
       setHeaderDisabled(false);
     }

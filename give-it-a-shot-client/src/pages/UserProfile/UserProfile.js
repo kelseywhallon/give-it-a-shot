@@ -24,9 +24,9 @@ export const UserProfile = props => {
   };
 
   const changeSmallButton = () => {
-    const [vw, vh] = getViewport();
+    const currentVw = getViewport()[0];
 
-    setSmallButton(vw > mobileBreakpoint ? false : true);
+    setSmallButton(currentVw > mobileBreakpoint ? false : true);
   };
 
   window.addEventListener("resize", changeSmallButton);
